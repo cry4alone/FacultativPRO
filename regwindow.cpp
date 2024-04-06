@@ -48,6 +48,7 @@ void RegWindow::on_pushButton_clicked()
     QTextStream ts(&f);
     ts << login << "," << pass <<"\n";
     QMessageBox::information(this,"Уведомление","Учетная запись успешно создана!");
+    f.close();
     close();
 }
 

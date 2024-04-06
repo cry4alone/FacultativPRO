@@ -65,16 +65,16 @@ border-radius: 30px;
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pushButton_2">
        <property name="text">
-        <string>Registration as student</string>
+        <string>Login</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="pushButton">
        <property name="text">
-        <string>Login</string>
+        <string>Registration as student</string>
        </property>
       </widget>
      </item>
