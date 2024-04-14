@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+#include "user.h"
+
 namespace Ui {
 class AuthWindow;
 }
@@ -14,6 +16,9 @@ class AuthWindow : public QDialog
 public:
     explicit AuthWindow(QWidget *parent = nullptr);
     ~AuthWindow();
+
+signals:
+    void userEntered(User::Role);
 
 private slots:
     void on_pushButton_clicked();

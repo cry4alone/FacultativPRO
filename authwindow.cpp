@@ -2,8 +2,10 @@
 #include "ui_authwindow.h"
 #include "mainwindow.h"
 #include "regwindow.h"
+#include "userdb.h"
+
 #include <QMessageBox>
-#include <QFile>ъ
+#include <QFile>
 #include <QTextStream>
 
 AuthWindow::AuthWindow(QWidget *parent)
@@ -29,32 +31,32 @@ void AuthWindow::on_pushButton_2_clicked()
 {
     const auto login = ui->lineEdit->text();
     const auto password = ui->lineEdit_2->text();
-    bool AuthSuccess = false;
-    if(login.isEmpty() || password.isEmpty())
+    if(login.isEmpty() ||
+        password.isEmpty())
     {
-        QMessageBox::warning(this,"Ошибка","Логин и пароль не могут быть пустыми");
+        QMessageBox::warning(
+            this, "Ошибка", "Логин и пароль не могут быть пустыми");
+        return;
     }
-    QFile file("user.csv");
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QMessageBox::warning(this,"Ошибка","База Данных не открыта");
+
+    // auto db = UserDb::instance();
+    // const User user = db.getUserByLoginAndPass(login, password);
+
+    // if (user.role == User::admin) {
+
+    // }
+
+
+    if (login == "Admin") {
+        emit userEntered(User::admin);
+        return;
     }
-    QTextStream in(&file);
-    while(!in.atEnd())
-    {
-        QStringList line = in.readLine().split(",");
-        if (line[0] == login && line[1] == password)
-        {
-            MainWindow mw;
-            mw.show();
-            file.close();
-            close();
-            AuthSuccess = true;
-            break;
-        }
+    if (login == "Teacher") {
+        emit userEntered(User::teacher);
+        return;
     }
-    if(AuthSuccess == false)
-    {
-      QMessageBox::warning(this,"Ошибка","Такой Учетной записи не существует\nпроверьте правильность логина и пароля!");
-    }
+
+
+
 }
 
