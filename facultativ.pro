@@ -10,11 +10,18 @@ CONFIG += c++17
 
 SOURCES += \
     addnewuserwindow.cpp \
+    adminuser.cpp \
     adminwindow.cpp \
     authwindow.cpp \
+    checkalluserswindow.cpp \
     main.cpp \
     mainwindow.cpp \
     regwindow.cpp \
+    studentfacultativeswindow.cpp \
+    studentpersonalwindow.cpp \
+    studentuser.cpp \
+    studentwindow.cpp \
+    teacheruser.cpp \
     teacherwindow.cpp \
     user.cpp \
     userdb.cpp \
@@ -22,10 +29,17 @@ SOURCES += \
 
 HEADERS += \
     addnewuserwindow.h \
+    adminuser.h \
     adminwindow.h \
     authwindow.h \
+    checkalluserswindow.h \
     mainwindow.h \
     regwindow.h \
+    studentfacultativeswindow.h \
+    studentpersonalwindow.h \
+    studentuser.h \
+    studentwindow.h \
+    teacheruser.h \
     teacherwindow.h \
     user.h \
     userdb.h \
@@ -35,8 +49,12 @@ FORMS += \
     addnewuserwindow.ui \
     adminwindow.ui \
     authwindow.ui \
+    checkalluserswindow.ui \
     mainwindow.ui \
     regwindow.ui \
+    studentfacultativeswindow.ui \
+    studentpersonalwindow.ui \
+    studentwindow.ui \
     teacherwindow.ui
 
 # Default rules for deployment.

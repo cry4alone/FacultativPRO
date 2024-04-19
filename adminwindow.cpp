@@ -2,6 +2,7 @@
 #include "ui_adminwindow.h"
 
 #include "addnewuserwindow.h"
+#include "checkalluserswindow.h"
 
 AdminWindow::AdminWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -28,9 +29,14 @@ void AdminWindow::on_pushBtnNewUser_clicked()
     AddNewUserWindow w;
     w.exec();
     show();
+}
 
-    // ***
 
-    //...
+void AdminWindow::on_pushBtnAllUsers_clicked()
+{
+    hide();
+    checkalluserswindow w;
+    w.exec();
+    show();
 }
 

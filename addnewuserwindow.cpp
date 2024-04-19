@@ -23,11 +23,25 @@ void AddNewUserWindow::on_pushBtnCancel_clicked()
 
 void AddNewUserWindow::on_pushBtnOk_clicked()
 {
-    //ui->li
-
-    // validate!
-
-    //auto db = UserDb::instance();
-    //db.addUser(user);
+    QString login = ui->lineEditlogin->text();
+    QString pass = ui->lineEditpass->text();
+    QString Name = ui->nameEdit->text();
+    QString Surname = ui->surnameEdit->text();
+    int index = ui->comboBox->currentIndex();
+    User::Role role = static_cast<User::Role>(index);
+    auto& db = UserDb::instance();
+    User* currUser = nullptr;
+    if (index == 0)
+    {
+        currUser = new TeacherUser(login, pass, Name, Surname, role);
+    }
+    else
+    {
+        currUser = new AdminUser(login, pass, role);
+    }
+    db.addUser(*currUser);
+    QMessageBox::information(this,"Уведомление","Учетная запись успешно создана!");
+    delete currUser;
+    close();
 }
 

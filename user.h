@@ -6,15 +6,13 @@
 class User
 {
 public:
-
-    enum Role {
-        admin, teacher, student
-    };
-
-public:
+    enum Role {Teacher, Administrator, Student};
+    User(const QString& Login, const QString& Password, const Role role);
     User();
-    QString Name;
-    QString Surname;
+    virtual ~User() {}
+    int ID;
+    QString Login;
+    QString Password;
     Role role;
 };
 

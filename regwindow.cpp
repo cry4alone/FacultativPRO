@@ -16,13 +16,9 @@ RegWindow::~RegWindow()
     delete ui;
 }
 
-void RegWindow::on_pushButton_2_clicked()
-{
-    close();
-}
 
 
-void RegWindow::on_pushButton_clicked()
+void RegWindow::on_OkButton_clicked()
 {
     const auto login = ui->lineEditlogin->text();
     if (login.trimmed().isEmpty())
@@ -32,6 +28,9 @@ void RegWindow::on_pushButton_clicked()
     }
     const auto pass = ui->lineEditpass->text();
     const auto rppass = ui->lineEditrepeatpass->text();
+    const auto name = ui->nameEdit->text();
+    const auto surname = ui->surnameEdit->text();
+    const auto group = ui->groupEdit->text();
     if(pass.isEmpty() == true)
     {
         QMessageBox::warning(this,"Ошибка","Пароли не может быть пустой");
@@ -42,13 +41,26 @@ void RegWindow::on_pushButton_clicked()
         QMessageBox::warning(this,"Ошибка","Пароли не совпадают");
         return;
     }
+    User* currUser = new StudentUser(login, pass, name, surname, group, User::Role::Student);
+    UserDb::instance().addUser(*currUser);
+    QMessageBox::information(this,"Уведомление","Учетная запись успешно создана!");
+    delete currUser;
+    close();
     //работа с бд
+    /*
     QFile f("user.csv");
     f.open(QFile::Append);
     QTextStream ts(&f);
     ts << login << "," << pass <<"\n";
     QMessageBox::information(this,"Уведомление","Учетная запись успешно создана!");
     f.close();
+    close();
+    */
+}
+
+
+void RegWindow::on_CancelButton_clicked()
+{
     close();
 }
 
