@@ -8,11 +8,22 @@
 #include <QFile>
 #include <QTextStream>
 
+#include <QRegularExpression>
+#include <QRegularExpressionValidator>
+
 AuthWindow::AuthWindow(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::AuthWindow)
 {
     ui->setupUi(this);
+
+    // ui->lineEdit->setValidator(
+    //     new QRegularExpressionValidator(
+    //         QRegularExpression(R"([A-Za-z]{25})"))); // TODO: нижняя граница!
+
+    // ui->lineEdit->setValidator(
+    //     new QRegularExpressionValidator(
+    //         QRegularExpression(R"([А-Я]{2}-\d{2})"))); // TODO: нижняя граница!
 }
 
 AuthWindow::~AuthWindow()

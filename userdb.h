@@ -19,6 +19,7 @@ public:
     int getNextId();
     void addUser(const User& user);
     QString AuthCheck(QString login, QString pass);
+
     //...
 
 private:

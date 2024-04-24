@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+#include "usersmodel.h"
+
 namespace Ui {
 class checkalluserswindow;
 }
@@ -20,6 +22,7 @@ private slots:
 
 private:
     Ui::checkalluserswindow *ui;
+    UsersModel *m_usersModel;
 };
 
 #endif // CHECKALLUSERSWINDOW_H

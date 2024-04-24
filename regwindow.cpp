@@ -46,16 +46,6 @@ void RegWindow::on_OkButton_clicked()
     QMessageBox::information(this,"Уведомление","Учетная запись успешно создана!");
     delete currUser;
     close();
-    //работа с бд
-    /*
-    QFile f("user.csv");
-    f.open(QFile::Append);
-    QTextStream ts(&f);
-    ts << login << "," << pass <<"\n";
-    QMessageBox::information(this,"Уведомление","Учетная запись успешно создана!");
-    f.close();
-    close();
-    */
 }
 
 

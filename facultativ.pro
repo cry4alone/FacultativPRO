@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,6 +25,7 @@ SOURCES += \
     teacherwindow.cpp \
     user.cpp \
     userdb.cpp \
+    usersmodel.cpp \
     windownavigator.cpp
 
 HEADERS += \
@@ -43,6 +44,7 @@ HEADERS += \
     teacherwindow.h \
     user.h \
     userdb.h \
+    usersmodel.h \
     windownavigator.h
 
 FORMS += \

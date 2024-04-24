@@ -15,7 +15,7 @@ WindowNavigator::WindowNavigator(QObject *parent)
 
 void WindowNavigator::start()
 {
-    m_authWindow->exec();
+    m_authWindow->show();
 }
 
 void WindowNavigator::onUserEntered(User::Role role)
