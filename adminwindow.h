@@ -23,6 +23,8 @@ private slots:
 
     void on_pushBtnNewUser_clicked();
 
+    void on_pushBtnAllUsers_clicked();
+
 private:
     Ui::AdminWindow *ui;
 };

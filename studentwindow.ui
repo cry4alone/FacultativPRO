@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AdminWindow</class>
- <widget class="QMainWindow" name="AdminWindow">
+ <class>studentwindow</class>
+ <widget class="QMainWindow" name="studentwindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>656</width>
+    <height>507</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>AdminWindow</string>
+   <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="changeUserButton">
       <property name="text">
-       <string>Exit</string>
+       <string>Сменить пользователя</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
+    <item row="1" column="2">
      <spacer name="verticalSpacer">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
@@ -30,71 +30,50 @@
       <property name="sizeHint" stdset="0">
        <size>
         <width>20</width>
-        <height>204</height>
+        <height>160</height>
        </size>
       </property>
      </spacer>
     </item>
-    <item row="2" column="0">
+    <item row="2" column="2">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="aboutStudent">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="personalAreaButton">
+        <property name="text">
+         <string>Личный кабинет</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="facultativButton">
+        <property name="text">
+         <string>Факультативы</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="3">
      <spacer name="horizontalSpacer">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
       <property name="sizeHint" stdset="0">
        <size>
-        <width>264</width>
+        <width>259</width>
         <height>20</height>
        </size>
       </property>
      </spacer>
     </item>
-    <item row="2" column="1">
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="font">
-         <font>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Редактирование пользователей</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushBtnNewUser">
-        <property name="text">
-         <string>Добавить нового пользователя</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushBtnAllUsers">
-        <property name="text">
-         <string>Просмотр всех пользователей</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="2" column="2">
-     <spacer name="horizontalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>264</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="3" column="1">
+    <item row="3" column="2">
      <spacer name="verticalSpacer_2">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
@@ -102,7 +81,20 @@
       <property name="sizeHint" stdset="0">
        <size>
         <width>20</width>
-        <height>203</height>
+        <height>160</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="2" column="0">
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>259</width>
+        <height>75</height>
        </size>
       </property>
      </spacer>
@@ -114,7 +106,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>656</width>
      <height>21</height>
     </rect>
    </property>

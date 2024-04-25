@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -12,31 +12,45 @@ SOURCES += \
     addnewuserwindow.cpp \
     adminwindow.cpp \
     authwindow.cpp \
+    checkalluserswindow.cpp \
     main.cpp \
     mainwindow.cpp \
     regwindow.cpp \
+    studentfacultativeswindow.cpp \
+    studentpersonalwindow.cpp \
+    studentwindow.cpp \
     teacherwindow.cpp \
     user.cpp \
     userdb.cpp \
+    usersmodel.cpp \
     windownavigator.cpp
 
 HEADERS += \
     addnewuserwindow.h \
     adminwindow.h \
     authwindow.h \
+    checkalluserswindow.h \
     mainwindow.h \
     regwindow.h \
+    studentfacultativeswindow.h \
+    studentpersonalwindow.h \
+    studentwindow.h \
     teacherwindow.h \
     user.h \
     userdb.h \
+    usersmodel.h \
     windownavigator.h
 
 FORMS += \
     addnewuserwindow.ui \
     adminwindow.ui \
     authwindow.ui \
+    checkalluserswindow.ui \
     mainwindow.ui \
     regwindow.ui \
+    studentfacultativeswindow.ui \
+    studentpersonalwindow.ui \
+    studentwindow.ui \
     teacherwindow.ui
 
 # Default rules for deployment.

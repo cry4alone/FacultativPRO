@@ -2,6 +2,9 @@
 #define REGWINDOW_H
 
 #include <QDialog>
+#include "userdb.h"
+#include "studentuser.h"
+
 
 namespace Ui {
 class RegWindow;
@@ -16,9 +19,9 @@ public:
     ~RegWindow();
 
 private slots:
-    void on_pushButton_2_clicked();
+    void on_OkButton_clicked();
 
-    void on_pushButton_clicked();
+    void on_CancelButton_clicked();
 
 private:
     Ui::RegWindow *ui;

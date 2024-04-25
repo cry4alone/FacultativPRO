@@ -9,6 +9,9 @@ RegWindow::RegWindow(QWidget *parent)
     , ui(new Ui::RegWindow)
 {
     ui->setupUi(this);
+    ui->groupEdit->setValidator(
+         new QRegularExpressionValidator(
+             QRegularExpression(R"([A-Z]{2}\d{2}-\d{2}[A-Z]{1})")));
 }
 
 RegWindow::~RegWindow()
@@ -16,39 +19,41 @@ RegWindow::~RegWindow()
     delete ui;
 }
 
-void RegWindow::on_pushButton_2_clicked()
-{
-    close();
-}
 
 
-void RegWindow::on_pushButton_clicked()
+void RegWindow::on_OkButton_clicked()
 {
     const auto login = ui->lineEditlogin->text();
     if (login.trimmed().isEmpty())
     {
-        QMessageBox::warning(this,"Ошибка","Логин пуст");
+        QMessageBox::warning(this,"Error","Login can't be empty!");
         return;
     }
     const auto pass = ui->lineEditpass->text();
     const auto rppass = ui->lineEditrepeatpass->text();
+    const auto name = ui->nameEdit->text();
+    const auto surname = ui->surnameEdit->text();
+    const auto group = ui->groupEdit->text();
     if(pass.isEmpty() == true)
     {
-        QMessageBox::warning(this,"Ошибка","Пароли не может быть пустой");
+        QMessageBox::warning(this,"Ошибка","Password can't be empty!");
         return;
     }
     if (pass != rppass)
     {
-        QMessageBox::warning(this,"Ошибка","Пароли не совпадают");
+        QMessageBox::warning(this,"Ошибка","Passwords aren't the same!");
         return;
     }
-    //работа с бд
-    QFile f("user.csv");
-    f.open(QFile::Append);
-    QTextStream ts(&f);
-    ts << login << "," << pass <<"\n";
-    QMessageBox::information(this,"Уведомление","Учетная запись успешно создана!");
-    f.close();
+    User* currUser = new User(login, pass, User::Role::Student, name, surname, group);
+    UserDb::instance().addUser(*currUser);
+    QMessageBox::information(this,"Notification","Personal account was successfully created!");
+    delete currUser;
+    close();
+}
+
+
+void RegWindow::on_CancelButton_clicked()
+{
     close();
 }
 

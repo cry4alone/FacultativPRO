@@ -2,6 +2,7 @@
 #include "adminwindow.h"
 #include "authwindow.h"
 #include "teacherwindow.h"
+#include "studentwindow.h"
 
 WindowNavigator::WindowNavigator(QObject *parent)
     : QObject{ parent }
@@ -14,12 +15,12 @@ WindowNavigator::WindowNavigator(QObject *parent)
 
 void WindowNavigator::start()
 {
-    m_authWindow->exec();
+    m_authWindow->show();
 }
 
 void WindowNavigator::onUserEntered(User::Role role)
 {
-    if (role == User::admin) {
+    if (role == User::Administrator) {
         AdminWindow *adminWindow(new AdminWindow);
         {
              connect(adminWindow, &AdminWindow::logout,
@@ -27,7 +28,7 @@ void WindowNavigator::onUserEntered(User::Role role)
         }
         m_mainWindow = adminWindow;
     }
-    else if (role == User::teacher) {
+    else if (role == User::Teacher) {
         TeacherWindow *teacherWindow(new TeacherWindow);
         {
             connect(teacherWindow, &TeacherWindow::logout,
@@ -35,8 +36,13 @@ void WindowNavigator::onUserEntered(User::Role role)
         }
         m_mainWindow = teacherWindow;
     }
-    else if (role == User::student) {
-        //...
+    else if (role == User::Student) {
+        studentwindow *Studentwindow(new studentwindow);
+        {
+            connect(Studentwindow, &studentwindow::logout,
+                    this, WindowNavigator::openAuthWindow);
+        }
+        m_mainWindow = Studentwindow;
     }
 
     m_mainWindow->show();

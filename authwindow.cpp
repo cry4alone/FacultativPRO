@@ -8,11 +8,22 @@
 #include <QFile>
 #include <QTextStream>
 
+#include <QRegularExpression>
+#include <QRegularExpressionValidator>
+
 AuthWindow::AuthWindow(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::AuthWindow)
 {
     ui->setupUi(this);
+
+    // ui->lineEdit->setValidator(
+    //     new QRegularExpressionValidator(
+    //         QRegularExpression(R"([A-Za-z]{25})"))); // TODO: нижняя граница!
+
+    // ui->lineEdit->setValidator(
+    //     new QRegularExpressionValidator(
+    //         QRegularExpression(R"([А-Я]{2}-\d{2})"))); // TODO: нижняя граница!
 }
 
 AuthWindow::~AuthWindow()
@@ -20,14 +31,7 @@ AuthWindow::~AuthWindow()
     delete ui;
 }
 
-void AuthWindow::on_pushButton_clicked()
-{
-    RegWindow rw;
-    rw.exec();
-}
-
-
-void AuthWindow::on_pushButton_2_clicked()
+void AuthWindow::on_LoginButton_clicked()
 {
     const auto login = ui->lineEdit->text();
     const auto password = ui->lineEdit_2->text();
@@ -39,24 +43,30 @@ void AuthWindow::on_pushButton_2_clicked()
         return;
     }
 
-    // auto db = UserDb::instance();
-    // const User user = db.getUserByLoginAndPass(login, password);
-
-    // if (user.role == User::admin) {
-
-    // }
-
-
-    if (login == "Admin") {
-        emit userEntered(User::admin);
+    QString UserRole = UserDb::instance().AuthCheck(login, password);
+    if (UserRole == "0") {
+        emit userEntered(User::Administrator);
         return;
     }
-    if (login == "Teacher") {
-        emit userEntered(User::teacher);
+    else if (UserRole == "1") {
+        emit userEntered(User::Teacher);
         return;
     }
+    else if (UserRole == "2") {
+        emit userEntered(User::Student);
+        return;
+    }
+    else if (UserRole == "None") {
+        QMessageBox::warning(
+            this, "Ошибка", "Неправильный логин или пароль!");
+    }
+
+}
 
 
-
+void AuthWindow::on_RegistrationButton_clicked()
+{
+    RegWindow rw;
+    rw.exec();
 }
 

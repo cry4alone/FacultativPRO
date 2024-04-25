@@ -21,9 +21,9 @@ signals:
     void userEntered(User::Role);
 
 private slots:
-    void on_pushButton_clicked();
+    void on_LoginButton_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_RegistrationButton_clicked();
 
 private:
     Ui::AuthWindow *ui;

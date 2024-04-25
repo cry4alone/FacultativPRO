@@ -2,6 +2,11 @@
 #define ADDNEWUSERWINDOW_H
 
 #include <QDialog>
+#include <QString>
+#include "user.h"
+#include "teacheruser.h"
+#include "adminuser.h"
+#include <qmessagebox.h>
 
 namespace Ui {
 class AddNewUserWindow;
