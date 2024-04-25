@@ -5,9 +5,15 @@
 #include "adminuser.h"
 #include "teacheruser.h"
 
+
 UserDb::UserDb()
-    : m_usersCsv("users.csv")
 {
+    QSqlDatabase m_database = QSqlDatabase::addDatabase("QSQLITE"); //TODO добавить как поле
+    m_database.setDatabaseName("FacultativPRO.sqlite");
+    if (!m_database.open()) {
+        qDebug()<<"Не удалось открыть базу данных";
+    }
+
 }
 
 UserDb& UserDb::instance()
@@ -16,109 +22,105 @@ UserDb& UserDb::instance()
     return db;
 }
 
-User UserDb::getUserByLoginAndPassword(QString login, QString pass)
-{
-
-    return User{};
-}
-
-bool UserDb::hasUserWithLogin(QString login)
-{
-
-}
-
 int UserDb::getNextId() {
 
-    if (!m_usersCsv.open(QIODevice::ReadOnly)) {
-        qWarning() << "Failed to open file for reading: " << m_usersCsv.errorString();
+    QSqlQuery query(m_database);
+    query.prepare("SELECT MAX(ID) FROM Users");
+    if (!query.exec()) {
+        qWarning() << "Failed to execute query: " << query.lastError().text();
         return 1;
     }
-
-    QTextStream in(&m_usersCsv);
-    int maxId = 0;
-    while (!in.atEnd()) {
-        QString line = in.readLine();
-        QStringList fields = line.split(",");
-        if (fields.size() >= 1) {
-            bool ok;
-            int id = fields[0].toInt(&ok);
-            if (ok && id > maxId) {
-                maxId = id;
-            }
-        }
+    if (query.next()) {
+        int m_nextId = query.value(0).toInt();
+        m_database.close();
+        return m_nextId + 1;
     }
-    m_usersCsv.close();
-    return maxId + 1;
 }
+
+QVector<User> UserDb::getAllUsers()
+{
+    QVector<User> users;
+    User user;
+    QSqlQuery query(m_database);
+    if (!query.exec("SELECT * FROM Users"))
+    {
+        qWarning() << "Failed to execute query: " << query.lastError().text();
+        return users;
+    }
+
+    while (query.next())
+    {
+        int id = query.value(0).toInt();
+        QString roleSt = query.value(3).toString();
+        QString login = query.value(1).toString();
+        QString password = query.value(2).toString();
+        QString name = query.value(4).toString();
+        QString surname = query.value(5).toString();
+        QString group = query.value(6).toString();
+        User::Role role;
+        if (roleSt == "2") {
+            role = User::Role::Student;
+        } else if (roleSt == "1") {
+            role = User::Role::Teacher;
+        } else if (roleSt == "0") {
+            role = User::Role::Administrator;
+        }
+        user = User(id, login, password, role, name, surname, group);
+        users.append(user);
+    }
+
+    return users;
+}
+
 
 void UserDb::addUser(const User& user)
 {
     m_nextId = getNextId();
-    m_usersCsv.open(QIODevice::Append);
-    QTextStream ts(&m_usersCsv);
-    ts << m_nextId << ",";
-    switch (user.role) {
-        case User::Role::Student:
-            ts << "Student,";
-            break;
-        case User::Role::Teacher:
-            ts << "Teacher,";
-            break;
-        case User::Role::Administrator:
-            ts << "Administrator,";
-            break;
-        }
-
-        // Записываем логин и пароль пользователя
-        ts << user.Login << "," << user.Password << ",";
-
-        // Записываем имя и фамилию пользователя
-
-
-        // Преобразуем указатель на базовый класс User в указатель на производный класс
-        const StudentUser* studentUser = dynamic_cast<const StudentUser*>(&user);
-        const TeacherUser* teacherUser = dynamic_cast<const TeacherUser*>(&user);
-        //const AdminUser* adminUser = dynamic_cast<const AdminUser*>(&user);
-
-        // Записываем дополнительные данные в зависимости от типа пользователя
-        if (studentUser)
+    QSqlQuery query(m_database);
+    query.prepare("INSERT INTO Users (ID, Login, Password, Role, Name, Surname, GroupNum) VALUES (:id, :login, :password, :role, :name, :surname, :groupnum)");
+        query.bindValue(":id", m_nextId);
+        query.bindValue(":login", user.Login);
+        query.bindValue(":password", user.Password);
+        switch (user.role)
         {
-            ts << studentUser->Name << "," << studentUser->Surname << "," << studentUser->Group << "\n";
+            case User::Role::Student:
+                query.bindValue(":role", 2);
+                query.bindValue(":name", user.Name);
+                query.bindValue(":surname", user.Surname);
+                query.bindValue(":groupnum", user.Group);
+                break;
+            case User::Role::Teacher:
+                query.bindValue(":role", 1);
+                query.bindValue(":name", user.Name);
+                query.bindValue(":surname", user.Surname);
+                break;
+            case User::Role::Administrator:
+                query.bindValue(":role", 0);
+                break;
         }
-
-       else if (teacherUser) {
-            ts << teacherUser->Name << "," << teacherUser->Surname << "\n";
-        }
-        /*
-        else if (adminUser) {
-            ts << "," << adminUser->phone << "\n";
-        }
-        */
-        m_usersCsv.close();
+        query.exec();
 }
 
 QString UserDb::AuthCheck(QString login, QString pass)
 {
+    QSqlQuery query(m_database);
+    query.prepare("SELECT Role FROM Users WHERE Login = :login AND Password = :password");
+    query.bindValue(":login", login);
+    query.bindValue(":password", pass);
 
-    if (!m_usersCsv.open(QIODevice::ReadOnly))
-    {
-        qWarning() << "Failed to open file for reading: " << m_usersCsv.errorString();
-    }
-    QTextStream in(&m_usersCsv);
-    while (!in.atEnd())
-    {
-        QString line = in.readLine();
-        QStringList fields = line.split(",");
-        if (fields.size() >= 4) // минимальное количество полей для пользователя
-        {
-            if (fields[2] == login && fields[3] == pass)
-            {
-                m_usersCsv.close();
-                return fields[1];
-            }
-        }
+    if (!query.exec()) {
+        qWarning() << "Failed to execute query: " << query.lastError().text();
+        m_database.close();
+        return "None";
     }
 
-    m_usersCsv.close();
+    if (query.next()) {
+        QString role = query.value(0).toString();
+        m_database.close();
+        return role;
+    }
+
+    m_database.close();
     return "None";
 }
+

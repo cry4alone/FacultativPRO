@@ -33,11 +33,11 @@ void AddNewUserWindow::on_pushBtnOk_clicked()
     User* currUser = nullptr;
     if (index == 0)
     {
-        currUser = new TeacherUser(login, pass, Name, Surname, role);
+        //currUser = new TeacherUser(login, pass, Name, Surname, role);
     }
     else
     {
-        currUser = new AdminUser(login, pass, role);
+        //currUser = new AdminUser(login, pass, role);
     }
     db.addUser(*currUser);
     QMessageBox::information(this,"Уведомление","Учетная запись успешно создана!");

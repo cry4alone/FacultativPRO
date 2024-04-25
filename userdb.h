@@ -3,7 +3,8 @@
 
 #include <QString>
 #include <QFile>
-
+#include <QtSql>
+#include <user.h>
 #include "user.h"
 
 class UserDb
@@ -13,18 +14,16 @@ public:
 
     // static bool itialize();
     static UserDb& instance();
-
-    User getUserByLoginAndPassword(QString login, QString pass);
-    bool hasUserWithLogin(QString login);
     int getNextId();
     void addUser(const User& user);
+    QVector<User> getAllUsers();
     QString AuthCheck(QString login, QString pass);
 
     //...
 
 private:
     UserDb();
-    QFile m_usersCsv;
+    QSqlDatabase m_database;
     int m_nextId;
 };
 

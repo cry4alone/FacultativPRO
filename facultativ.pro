@@ -10,7 +10,6 @@ CONFIG += c++17
 
 SOURCES += \
     addnewuserwindow.cpp \
-    adminuser.cpp \
     adminwindow.cpp \
     authwindow.cpp \
     checkalluserswindow.cpp \
@@ -19,9 +18,7 @@ SOURCES += \
     regwindow.cpp \
     studentfacultativeswindow.cpp \
     studentpersonalwindow.cpp \
-    studentuser.cpp \
     studentwindow.cpp \
-    teacheruser.cpp \
     teacherwindow.cpp \
     user.cpp \
     userdb.cpp \
@@ -30,7 +27,6 @@ SOURCES += \
 
 HEADERS += \
     addnewuserwindow.h \
-    adminuser.h \
     adminwindow.h \
     authwindow.h \
     checkalluserswindow.h \
@@ -38,9 +34,7 @@ HEADERS += \
     regwindow.h \
     studentfacultativeswindow.h \
     studentpersonalwindow.h \
-    studentuser.h \
     studentwindow.h \
-    teacheruser.h \
     teacherwindow.h \
     user.h \
     userdb.h \

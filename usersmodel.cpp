@@ -6,20 +6,11 @@
 UsersModel::UsersModel(QObject *parent)
     : QAbstractTableModel{parent}
 {
-    //m_users = UserDb::instance().getAllUsers();
-
-    m_users = {
-        new User("Login1", "Pass1", User::Administrator),
-        new User("Login2", "Pass2", User::Student),
-        new User("Login3", "Pass3", User::Teacher),
-        new User("Login4", "Pass4", User::Administrator)
-    };
+    m_users = UserDb::instance().getAllUsers();
 }
 
 UsersModel::~UsersModel()
 {
-    for (int i = 0; i < m_users.size(); ++i)
-        delete m_users[i];
 }
 
 
@@ -30,25 +21,37 @@ int UsersModel::rowCount(const QModelIndex &parent) const
 
 int UsersModel::columnCount(const QModelIndex &parent) const
 {
-    return 3; // TODO:
+    return 7; // TODO:
 }
 
 QVariant UsersModel::data(const QModelIndex &index, int role) const
 {
     qDebug() << index;
 
-    if ((index.column() > 3) || (index.row() > m_users.size()))
+    if ((index.column() > 7) || (index.row() > m_users.size()))
         return {};
 
     if (role == Qt::DisplayRole) {
         if (index.column() == 0) {
-            return m_users[index.row()]->Login;
+            return m_users[index.row()].ID;
         }
         else if (index.column() == 1) {
-            return m_users[index.row()]->Password;
+            return m_users[index.row()].Login;
         }
         else if (index.column() == 2) {
-            return m_users[index.row()]->role;
+            return m_users[index.row()].Password;
+        }
+        else if (index.column() == 3) {
+            return m_users[index.row()].role;
+        }
+        else if (index.column() == 4) {
+            return m_users[index.row()].Name;
+        }
+        else if (index.column() == 5) {
+            return m_users[index.row()].Surname;
+        }
+        else if (index.column() == 6) {
+            return m_users[index.row()].Group;
         }
     }
     return {};
@@ -64,11 +67,19 @@ QVariant UsersModel::headerData(int section, Qt::Orientation orientation, int ro
     {
         switch (section) {
         case 0:
-            return "Login";
+            return "ID";
         case 1:
-            return "Password";
+            return "Login";
         case 2:
+            return "Password";
+        case 3:
             return "Role";
+        case 4:
+            return "Name";
+        case 5:
+            return "Surname";
+        case 6:
+            return "Group";
         default:
             break;
         }

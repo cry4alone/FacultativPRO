@@ -12,12 +12,6 @@ int main(int argc, char *argv[])
 
     UserDb::instance();
 
-    QSqlDatabase sdb = QSqlDatabase::addDatabase("QSQLITE");
-    sdb.setDatabaseName("OSOGO.sqlite");
-    if (!sdb.open()) {
-        qDebug()<<"Не удалось открыть базу данных";
-    }
-
     WindowNavigator wn;
     wn.start();
 

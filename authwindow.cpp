@@ -44,15 +44,15 @@ void AuthWindow::on_LoginButton_clicked()
     }
 
     QString UserRole = UserDb::instance().AuthCheck(login, password);
-    if (UserRole == "Administrator") {
+    if (UserRole == "0") {
         emit userEntered(User::Administrator);
         return;
     }
-    else if (UserRole == "Teacher") {
+    else if (UserRole == "1") {
         emit userEntered(User::Teacher);
         return;
     }
-    else if (UserRole == "Student") {
+    else if (UserRole == "2") {
         emit userEntered(User::Student);
         return;
     }

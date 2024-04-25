@@ -3,7 +3,7 @@
 
 #include <QAbstractTableModel>
 #include <QSharedPointer>
-#include <vector>
+#include <QVector>
 
 #include "user.h"
 
@@ -21,7 +21,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 
 private:
-    std::vector<User*> m_users;
+    QVector<User> m_users;
 };
 
 #endif // USERSMODEL_H
