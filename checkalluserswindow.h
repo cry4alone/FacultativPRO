@@ -2,7 +2,7 @@
 #define CHECKALLUSERSWINDOW_H
 
 #include <QDialog>
-
+#include "changeuserfromadmin.h"
 #include "usersmodel.h"
 
 namespace Ui {
@@ -19,6 +19,8 @@ public:
 
 private slots:
     void on_ButtonBack_clicked();
+
+    void on_tableViewUsers_doubleClicked(const QModelIndex &index);
 
 private:
     Ui::checkalluserswindow *ui;

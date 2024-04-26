@@ -12,7 +12,10 @@ SOURCES += \
     addnewuserwindow.cpp \
     adminwindow.cpp \
     authwindow.cpp \
+    changeuserfromadmin.cpp \
     checkalluserswindow.cpp \
+    facultativ.cpp \
+    facultativesmodel.cpp \
     main.cpp \
     mainwindow.cpp \
     regwindow.cpp \
@@ -29,7 +32,10 @@ HEADERS += \
     addnewuserwindow.h \
     adminwindow.h \
     authwindow.h \
+    changeuserfromadmin.h \
     checkalluserswindow.h \
+    facultativ.h \
+    facultativesmodel.h \
     mainwindow.h \
     regwindow.h \
     studentfacultativeswindow.h \
@@ -45,6 +51,7 @@ FORMS += \
     addnewuserwindow.ui \
     adminwindow.ui \
     authwindow.ui \
+    changeuserfromadmin.ui \
     checkalluserswindow.ui \
     mainwindow.ui \
     regwindow.ui \

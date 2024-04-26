@@ -68,10 +68,44 @@ QVector<User> UserDb::getAllUsers()
         user = User(id, login, password, role, name, surname, group);
         users.append(user);
     }
-
+    m_database.close();
     return users;
 }
 
+User UserDb::getUserByID(int id)
+{
+    qDebug() << id;
+    QSqlQuery query(m_database);
+    query.prepare("SELECT * FROM Users WHERE ID = :id");
+    query.bindValue(":id", id);
+    if (!query.exec())
+    {
+        qWarning() << "Failed to execute query: " << query.lastError().text();
+    }
+
+    if (query.next())
+    {
+        qDebug() << "Я ТУТ";
+        QString roleSt = query.value(3).toString();
+        QString login = query.value(1).toString();
+        QString password = query.value(2).toString();
+        QString name = query.value(4).toString();
+        QString surname = query.value(5).toString();
+        QString group = query.value(6).toString();
+        User::Role role;
+        if (roleSt == "2") {
+            role = User::Role::Student;
+        } else if (roleSt == "1") {
+            role = User::Role::Teacher;
+        } else if (roleSt == "0") {
+            role = User::Role::Administrator;
+        }
+        User user = User(id, login, password, role, name, surname, group);
+        m_database.close();
+        return user;
+    }
+    return User();
+}
 
 void UserDb::addUser(const User& user)
 {
@@ -122,5 +156,24 @@ QString UserDb::AuthCheck(QString login, QString pass)
 
     m_database.close();
     return "None";
+}
+
+void UserDb::addFacultativ(const Facultativ& facultativ)
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO Facultatives (ID_Teacher, Discipline_Name, Type_of_Study) VALUES (:id_teacher, :discipline_name, :type_of_study");
+    query.bindValue(":id_teacher", facultativ.ID_Teacher);
+    query.bindValue(":discipline_name", facultativ.Discipline_Name);
+    query.bindValue(":type_of_study", facultativ.Type_of_Study);
+
+    if (!query.exec())
+    {
+        qWarning() << "Failed to execute query: " << query.lastError().text();
+    }
+
+    if (query.next())
+    {
+        m_database.close();
+    }
 }
 

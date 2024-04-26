@@ -31,6 +31,11 @@ QVariant UsersModel::data(const QModelIndex &index, int role) const
     if ((index.column() > 7) || (index.row() > m_users.size()))
         return {};
 
+    if (role == Qt::UserRole) { // возврат значения id выделенной строки
+        if (index.column() == 0) {
+            return m_users[index.row()].ID;
+        }
+    }
     if (role == Qt::DisplayRole) {
         if (index.column() == 0) {
             return m_users[index.row()].ID;
@@ -83,10 +88,6 @@ QVariant UsersModel::headerData(int section, Qt::Orientation orientation, int ro
         default:
             break;
         }
-    }
-    else if (orientation == Qt::Vertical)
-    {
-        return QString::number(section + 1);
     }
 
     return QAbstractTableModel::headerData(section, orientation, role);

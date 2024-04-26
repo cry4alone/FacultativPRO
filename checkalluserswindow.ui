@@ -27,7 +27,23 @@
    <item row="1" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QComboBox" name="comboBoxRole"/>
+      <widget class="QComboBox" name="comboBoxRole">
+       <item>
+        <property name="text">
+         <string>Admins</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Teachers</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Students</string>
+        </property>
+       </item>
+      </widget>
      </item>
      <item>
       <spacer name="horizontalSpacer_3">
