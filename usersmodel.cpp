@@ -26,7 +26,6 @@ int UsersModel::columnCount(const QModelIndex &parent) const
 
 QVariant UsersModel::data(const QModelIndex &index, int role) const
 {
-    qDebug() << index;
 
     if ((index.column() > 7) || (index.row() > m_users.size()))
         return {};

@@ -2,6 +2,7 @@
 #define STUDENTFACULTATIVESWINDOW_H
 
 #include <QDialog>
+#include "facultativesmodel.h"
 
 namespace Ui {
 class studentfacultativeswindow;

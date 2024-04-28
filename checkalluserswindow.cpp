@@ -27,9 +27,10 @@ void checkalluserswindow::on_ButtonBack_clicked()
 
 void checkalluserswindow::on_tableViewUsers_doubleClicked(const QModelIndex &index)
 {
-    int userId = ui->tableViewUsers->model()->data(index, Qt::UserRole).toInt();
-    qDebug() << "Выходи дурак" << userId;
+    const auto mi = index.siblingAtColumn(0);
+    int userId = ui->tableViewUsers->model()->data(mi, Qt::UserRole).toInt();
     ChangeUserFromAdmin wn(userId);
     wn.exec();
+    ui->tableViewUsers->setModel(new UsersModel);
 }
 

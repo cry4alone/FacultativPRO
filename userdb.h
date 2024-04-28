@@ -19,6 +19,7 @@ public:
     QString AuthCheck(QString login, QString pass);
     User getUserByID(int id);
     void addFacultativ(const Facultativ& facultativ);
+    bool changeUser(const User& user);
 
 private:
     UserDb();

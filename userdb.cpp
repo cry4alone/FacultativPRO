@@ -10,10 +10,10 @@ UserDb::UserDb()
 {
     QSqlDatabase m_database = QSqlDatabase::addDatabase("QSQLITE"); //TODO добавить как поле
     m_database.setDatabaseName("FacultativPRO.sqlite");
-    if (!m_database.open()) {
+    if (!m_database.open())
+    {
         qDebug()<<"Не удалось открыть базу данных";
     }
-
 }
 
 UserDb& UserDb::instance()
@@ -141,7 +141,7 @@ QString UserDb::AuthCheck(QString login, QString pass)
     query.prepare("SELECT Role FROM Users WHERE Login = :login AND Password = :password");
     query.bindValue(":login", login);
     query.bindValue(":password", pass);
-
+    qDebug() << query.executedQuery();
     if (!query.exec()) {
         qWarning() << "Failed to execute query: " << query.lastError().text();
         m_database.close();
@@ -164,7 +164,6 @@ void UserDb::addFacultativ(const Facultativ& facultativ)
     query.prepare("INSERT INTO Facultatives (ID_Teacher, Discipline_Name, Type_of_Study) VALUES (:id_teacher, :discipline_name, :type_of_study");
     query.bindValue(":id_teacher", facultativ.ID_Teacher);
     query.bindValue(":discipline_name", facultativ.Discipline_Name);
-    query.bindValue(":type_of_study", facultativ.Type_of_Study);
 
     if (!query.exec())
     {
@@ -175,5 +174,25 @@ void UserDb::addFacultativ(const Facultativ& facultativ)
     {
         m_database.close();
     }
+}
+
+bool UserDb::changeUser(const User& user)
+{
+    QSqlQuery query(m_database);
+    qDebug() << user.ID << user.Login << user.Password << user.Name << user.Surname << user.Group;
+    query.prepare("UPDATE Users SET ID = :id, Login = :login, Password = :password, Name = :name, Surname = :surname, GroupNum = :group  WHERE Users.ID = :old_id");
+    query.bindValue(":id", user.ID);
+    query.bindValue(":login", user.Login);
+    query.bindValue(":password", user.Password);
+    query.bindValue(":name", user.Name);
+    query.bindValue(":surname", user.Surname);
+    query.bindValue(":group", user.Group);
+    query.bindValue(":old_id", user.ID);
+    if (!query.exec())
+    {
+        qWarning() << "Failed to execute query: " << query.lastError().text();
+        return false;
+    }
+    return true;
 }
 

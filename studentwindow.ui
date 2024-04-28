@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QPushButton" name="changeUserButton">
       <property name="text">
-       <string>Сменить пользователя</string>
+       <string>Change user</string>
       </property>
      </widget>
     </item>
@@ -47,14 +47,14 @@
       <item>
        <widget class="QPushButton" name="personalAreaButton">
         <property name="text">
-         <string>Личный кабинет</string>
+         <string>Personal account</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="facultativButton">
         <property name="text">
-         <string>Факультативы</string>
+         <string>Facultatives</string>
         </property>
        </widget>
       </item>

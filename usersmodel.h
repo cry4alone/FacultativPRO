@@ -13,6 +13,8 @@ public:
     explicit UsersModel(QObject *parent = nullptr);
     ~UsersModel();
 
+    //int getUserId(int row); // ?
+
     // QAbstractItemModel interface
 public:
     int rowCount(const QModelIndex &parent) const;

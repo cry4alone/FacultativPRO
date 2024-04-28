@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "userdb.h"
 #include <QString>
+#include <QMessageBox>
 namespace Ui {
 class ChangeUserFromAdmin;
 }
@@ -17,9 +18,11 @@ public:
     ~ChangeUserFromAdmin();
 
 private slots:
-    void on_pushButton_2_clicked();
 
-    void on_pushButton_clicked();
+
+    void on_changeButton_clicked();
+
+    void on_cancelButton_clicked();
 
 private:
     Ui::ChangeUserFromAdmin *ui;

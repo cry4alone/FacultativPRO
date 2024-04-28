@@ -28,16 +28,17 @@ void AddNewUserWindow::on_pushBtnOk_clicked()
     QString Name = ui->nameEdit->text();
     QString Surname = ui->surnameEdit->text();
     int index = ui->comboBox->currentIndex();
-    User::Role role = static_cast<User::Role>(index);
     auto& db = UserDb::instance();
     User* currUser = nullptr;
     if (index == 0)
     {
-        //currUser = new TeacherUser(login, pass, Name, Surname, role);
+        User::Role role = User::Role::Teacher;
+        currUser = new User(login, pass, role, Name, Surname, NULL);
     }
     else
     {
-        //currUser = new AdminUser(login, pass, role);
+        User::Role role = User::Role::Administrator;
+        currUser = new User(login, pass, role, NULL, NULL, NULL);
     }
     db.addUser(*currUser);
     QMessageBox::information(this,"Уведомление","Учетная запись успешно создана!");

@@ -6,6 +6,10 @@ studentfacultativeswindow::studentfacultativeswindow(QWidget *parent) :
     ui(new Ui::studentfacultativeswindow)
 {
     ui->setupUi(this);
+    ui->tableView->setModel(new FacultativesModel);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableView->verticalHeader()->hide();
+    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 }
 
 studentfacultativeswindow::~studentfacultativeswindow()
