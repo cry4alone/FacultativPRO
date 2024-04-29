@@ -18,7 +18,7 @@ public:
     ~AuthWindow();
 
 signals:
-    void userEntered(User::Role);
+    void userEntered(User::Role, int);
 
 private slots:
     void on_LoginButton_clicked();

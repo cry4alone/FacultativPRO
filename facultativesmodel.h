@@ -3,6 +3,7 @@
 #include <QAbstractTableModel>
 #include <QVector>
 #include "facultativ.h"
+#include "userdb.h"
 
 class FacultativesModel : public QAbstractTableModel
 {

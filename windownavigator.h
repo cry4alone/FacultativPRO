@@ -16,7 +16,7 @@ public:
     void start();
 
 private slots:
-    void onUserEntered(User::Role);
+    void onUserEntered(User::Role, int);
     void openAuthWindow();
 
 private:

@@ -12,7 +12,7 @@ class TeacherWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit TeacherWindow(QWidget *parent = nullptr);
+    explicit TeacherWindow(QWidget *parent = nullptr, int UserID = -1);
     ~TeacherWindow();
 
 signals:

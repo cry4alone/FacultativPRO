@@ -1,7 +1,7 @@
 #include "teacherwindow.h"
 #include "ui_teacherwindow.h"
 
-TeacherWindow::TeacherWindow(QWidget *parent)
+TeacherWindow::TeacherWindow(QWidget *parent, int UserID)
     : QMainWindow(parent)
     , ui(new Ui::TeacherWindow)
 {

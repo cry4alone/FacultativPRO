@@ -1,7 +1,7 @@
 #include "studentfacultativeswindow.h"
 #include "ui_studentfacultativeswindow.h"
 
-studentfacultativeswindow::studentfacultativeswindow(QWidget *parent) :
+studentfacultativeswindow::studentfacultativeswindow(QWidget *parent, User m_user) :
     QDialog(parent),
     ui(new Ui::studentfacultativeswindow)
 {
@@ -22,3 +22,8 @@ void studentfacultativeswindow::on_ButtonBack_clicked()
     close();
 }
 
+void studentfacultativeswindow::on_signFacultativButton_clicked()
+{
+    signForFacultativWindow sffw;
+    sffw.exec();
+}

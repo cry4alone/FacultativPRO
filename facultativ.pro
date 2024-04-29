@@ -19,6 +19,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     regwindow.cpp \
+    signforfacultativwindow.cpp \
     studentfacultativeswindow.cpp \
     studentpersonalwindow.cpp \
     studentwindow.cpp \
@@ -38,6 +39,7 @@ HEADERS += \
     facultativesmodel.h \
     mainwindow.h \
     regwindow.h \
+    signforfacultativwindow.h \
     studentfacultativeswindow.h \
     studentpersonalwindow.h \
     studentwindow.h \
@@ -55,6 +57,7 @@ FORMS += \
     checkalluserswindow.ui \
     mainwindow.ui \
     regwindow.ui \
+    signforfacultativwindow.ui \
     studentfacultativeswindow.ui \
     studentpersonalwindow.ui \
     studentwindow.ui \

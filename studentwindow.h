@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "studentpersonalwindow.h"
 #include "studentfacultativeswindow.h"
+#include "user.h"
 
 namespace Ui {
 class studentwindow;
@@ -14,7 +15,7 @@ class studentwindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit studentwindow(QWidget *parent = nullptr);
+    explicit studentwindow(QWidget *parent = nullptr, int UserID = -1);
     ~studentwindow();
 
 signals:
@@ -29,6 +30,7 @@ private slots:
 
 private:
     Ui::studentwindow *ui;
+    User m_User;
 };
 
 #endif // STUDENTWINDOW_H

@@ -43,20 +43,20 @@ void AuthWindow::on_LoginButton_clicked()
         return;
     }
 
-    QString UserRole = UserDb::instance().AuthCheck(login, password);
-    if (UserRole == "0") {
-        emit userEntered(User::Administrator);
+    QPair<QString, int> result = UserDb::instance().AuthCheck(login, password);
+    if (result.first == "0") {
+        emit userEntered(User::Administrator, -1);
         return;
     }
-    else if (UserRole == "1") {
-        emit userEntered(User::Teacher);
+    else if (result.first == "1") {
+        emit userEntered(User::Teacher, result.second);
         return;
     }
-    else if (UserRole == "2") {
-        emit userEntered(User::Student);
+    else if (result.first == "2") {
+        emit userEntered(User::Student, result.second);
         return;
     }
-    else if (UserRole == "None") {
+    else if (result.first == "None") {
         QMessageBox::warning(
             this, "Ошибка", "Неправильный логин или пароль!");
     }

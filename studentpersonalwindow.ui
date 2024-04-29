@@ -88,6 +88,9 @@
          </item>
          <item>
           <widget class="QLineEdit" name="lineEditpass">
+           <property name="inputMethodHints">
+            <set>Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
+           </property>
            <property name="echoMode">
             <enum>QLineEdit::PasswordEchoOnEdit</enum>
            </property>
@@ -108,7 +111,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="groupEdit_2">
+          <widget class="QLineEdit" name="lineEditPhone">
            <property name="placeholderText">
             <string>Phone</string>
            </property>
@@ -143,9 +146,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="OkButton">
+      <widget class="QPushButton" name="ChangeButton">
        <property name="text">
-        <string>OK</string>
+        <string>Change</string>
        </property>
       </widget>
      </item>

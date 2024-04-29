@@ -74,7 +74,6 @@ QVector<User> UserDb::getAllUsers()
 
 User UserDb::getUserByID(int id)
 {
-    qDebug() << id;
     QSqlQuery query(m_database);
     query.prepare("SELECT * FROM Users WHERE ID = :id");
     query.bindValue(":id", id);
@@ -85,7 +84,6 @@ User UserDb::getUserByID(int id)
 
     if (query.next())
     {
-        qDebug() << "Я ТУТ";
         QString roleSt = query.value(3).toString();
         QString login = query.value(1).toString();
         QString password = query.value(2).toString();
@@ -135,27 +133,27 @@ void UserDb::addUser(const User& user)
         query.exec();
 }
 
-QString UserDb::AuthCheck(QString login, QString pass)
+QPair<QString, int> UserDb::AuthCheck(QString login, QString pass)
 {
     QSqlQuery query(m_database);
-    query.prepare("SELECT Role FROM Users WHERE Login = :login AND Password = :password");
+    query.prepare("SELECT Role, ID FROM Users WHERE Login = :login AND Password = :password");
     query.bindValue(":login", login);
     query.bindValue(":password", pass);
-    qDebug() << query.executedQuery();
     if (!query.exec()) {
         qWarning() << "Failed to execute query: " << query.lastError().text();
         m_database.close();
-        return "None";
+        return QPair<QString, int>("None", -1);
     }
 
     if (query.next()) {
         QString role = query.value(0).toString();
+        int ID = query.value(1).toInt();
         m_database.close();
-        return role;
+        return QPair<QString, int>(role, ID);
     }
 
     m_database.close();
-    return "None";
+    return QPair<QString, int>("None", -1);
 }
 
 void UserDb::addFacultativ(const Facultativ& facultativ)
@@ -179,7 +177,6 @@ void UserDb::addFacultativ(const Facultativ& facultativ)
 bool UserDb::changeUser(const User& user)
 {
     QSqlQuery query(m_database);
-    qDebug() << user.ID << user.Login << user.Password << user.Name << user.Surname << user.Group;
     query.prepare("UPDATE Users SET ID = :id, Login = :login, Password = :password, Name = :name, Surname = :surname, GroupNum = :group  WHERE Users.ID = :old_id");
     query.bindValue(":id", user.ID);
     query.bindValue(":login", user.Login);
@@ -194,5 +191,29 @@ bool UserDb::changeUser(const User& user)
         return false;
     }
     return true;
+}
+
+QVector<Facultativ> UserDb::getAllFacultatives()
+{
+    QVector<Facultativ> facultatives;
+    Facultativ facultativ;
+    QSqlQuery query(m_database);
+    query.prepare("SELECT Facultatives.ID, Facultatives.ID_Teacher, Facultatives.Discipline_Name,Users.Surname, Users.Name FROM Facultatives INNER JOIN Users ON Facultatives.ID_Teacher = Users.ID WHERE Users.Role = 1;");
+    if (!query.exec())
+    {
+        qWarning() << "Failed to execute query: " << query.lastError().text();
+    }
+    while (query.next())
+    {
+        int ID = query.value(0).toInt();
+        int ID_Teacher = query.value(1).toInt();
+        QString Discipline_Name = query.value(2).toString();
+        QString teacher_surname = query.value(3).toString();
+        QString teacher_name = query.value(4).toString();
+        facultativ = Facultativ(ID, ID_Teacher, Discipline_Name, teacher_surname, teacher_name);
+        facultatives.append(facultativ);
+    }
+    m_database.close();
+    return facultatives;
 }
 

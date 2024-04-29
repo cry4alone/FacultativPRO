@@ -18,7 +18,7 @@ void WindowNavigator::start()
     m_authWindow->show();
 }
 
-void WindowNavigator::onUserEntered(User::Role role)
+void WindowNavigator::onUserEntered(User::Role role, int UserID)
 {
     if (role == User::Administrator) {
         AdminWindow *adminWindow(new AdminWindow);
@@ -37,7 +37,7 @@ void WindowNavigator::onUserEntered(User::Role role)
         m_mainWindow = teacherWindow;
     }
     else if (role == User::Student) {
-        studentwindow *Studentwindow(new studentwindow);
+        studentwindow *Studentwindow(new studentwindow(nullptr ,UserID));
         {
             connect(Studentwindow, &studentwindow::logout,
                     this, WindowNavigator::openAuthWindow);

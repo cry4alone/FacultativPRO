@@ -16,10 +16,11 @@ public:
     int getNextId();
     void addUser(const User& user);
     QVector<User> getAllUsers();
-    QString AuthCheck(QString login, QString pass);
+    QPair<QString, int> AuthCheck(QString login, QString pass);
     User getUserByID(int id);
     void addFacultativ(const Facultativ& facultativ);
     bool changeUser(const User& user);
+    QVector<Facultativ> getAllFacultatives();
 
 private:
     UserDb();
