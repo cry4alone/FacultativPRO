@@ -14,7 +14,7 @@ class signForFacultativWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit signForFacultativWindow(QWidget *parent = nullptr);
+    explicit signForFacultativWindow(QWidget *parent = nullptr, int UserID = -1);
     ~signForFacultativWindow();
 
 private slots:
@@ -23,6 +23,7 @@ private slots:
     void on_tableView_doubleClicked(const QModelIndex &index);
 
 private:
+    int m_UserID;
     Ui::signForFacultativWindow *ui;
 };
 

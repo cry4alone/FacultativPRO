@@ -245,6 +245,24 @@ QVector<Facultativ> UserDb::getUserFacultatives(int UserID)
     return facultatives;
 }
 
+bool UserDb::signForFacultativ(int UserID, int FacultativID)
+{
+    QSqlQuery query(m_database);
+    query.prepare("INSERT INTO Study (ID_Student, ID_Facultative) VALUES (:UserID, :FacultativID)");
+    query.bindValue(":UserID", UserID);
+    query.bindValue(":FacultativID", FacultativID);
+    if (!query.exec())
+    {
+        qWarning() << "Failed to execute query: " << query.lastError().text();
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+    return false;
+}
+
 void deleteUser(int id)
 {
 

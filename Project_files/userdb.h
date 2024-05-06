@@ -22,6 +22,7 @@ public:
     bool changeUser(const User& user);
     QVector<Facultativ> getAllFacultatives();
     void deleteUser(int id);
+    bool signForFacultativ(int UserID, int FacultativID);
     QVector<Facultativ> getUserFacultatives(int UserID);
 private:
     UserDb();
