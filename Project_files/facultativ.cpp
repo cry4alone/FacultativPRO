@@ -8,6 +8,7 @@ Facultativ::Facultativ(const int id, const int id_teacher, const QString discipl
     Teacher_Name = teacher_Name;
     Teacher_Surname = teacher_Surname;
 }
+
 Facultativ::Facultativ()
 {
 

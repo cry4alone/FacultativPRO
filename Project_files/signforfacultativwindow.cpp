@@ -6,7 +6,7 @@ signForFacultativWindow::signForFacultativWindow(QWidget *parent) :
     ui(new Ui::signForFacultativWindow)
 {
     ui->setupUi(this);
-    ui->tableView->setModel(new FacultativesModel);
+    ui->tableView->setModel(new FacultativesModel(nullptr, 1, 0));
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableView->verticalHeader()->hide();
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);

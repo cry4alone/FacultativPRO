@@ -16,6 +16,7 @@ SOURCES += \
     checkalluserswindow.cpp \
     facultativ.cpp \
     facultativesmodel.cpp \
+    facultativschedulewindow.cpp \
     main.cpp \
     mainwindow.cpp \
     regwindow.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     checkalluserswindow.h \
     facultativ.h \
     facultativesmodel.h \
+    facultativschedulewindow.h \
     mainwindow.h \
     regwindow.h \
     signforfacultativwindow.h \
@@ -55,6 +57,7 @@ FORMS += \
     authwindow.ui \
     changeuserfromadmin.ui \
     checkalluserswindow.ui \
+    facultativschedulewindow.ui \
     mainwindow.ui \
     regwindow.ui \
     signforfacultativwindow.ui \

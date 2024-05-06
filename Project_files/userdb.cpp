@@ -217,3 +217,35 @@ QVector<Facultativ> UserDb::getAllFacultatives()
     return facultatives;
 }
 
+QVector<Facultativ> UserDb::getUserFacultatives(int UserID)
+{
+    QVector<Facultativ> facultatives;
+    Facultativ facultativ;
+    QSqlQuery query(m_database);
+    query.prepare("SELECT Facultatives.ID, Facultatives.ID_Teacher, Facultatives.Discipline_Name, Users.Surname, Users.Name, Facultatives.Day_of_Week, Facultatives.Start_Date, Facultatives.End_Date FROM Facultatives INNER JOIN Users ON Facultatives.ID_Teacher = Users.ID INNER JOIN Study ON Facultatives.ID = Study.ID_Facultative WHERE Study.ID_Student = :student_id;");
+    query.bindValue(":student_id", UserID);
+    if (!query.exec())
+    {
+        qWarning() << "Failed to execute query: " << query.lastError().text();
+    }
+    while (query.next())
+    {
+        int ID = query.value(0).toInt();
+        int ID_Teacher = query.value(1).toInt();
+        QString Discipline_Name = query.value(2).toString();
+        QString teacher_surname = query.value(3).toString();
+        QString teacher_name = query.value(4).toString();
+        int Day_of_Week = query.value(5).toInt();
+        QDate Start_Date = query.value(6).toDate();
+        QDate End_Date = query.value(7).toDate();
+        facultativ = Facultativ(ID, ID_Teacher, Discipline_Name, teacher_surname, teacher_name, Day_of_Week, Start_Date, End_Date);
+        facultatives.append(facultativ);
+    }
+    m_database.close();
+    return facultatives;
+}
+
+void deleteUser(int id)
+{
+
+}

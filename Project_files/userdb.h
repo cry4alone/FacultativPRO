@@ -21,7 +21,8 @@ public:
     void addFacultativ(const Facultativ& facultativ);
     bool changeUser(const User& user);
     QVector<Facultativ> getAllFacultatives();
-
+    void deleteUser(int id);
+    QVector<Facultativ> getUserFacultatives(int UserID);
 private:
     UserDb();
     QSqlDatabase m_database;

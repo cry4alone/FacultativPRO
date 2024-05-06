@@ -22,6 +22,8 @@ void studentwindow::on_changeUserButton_clicked()
 
 void studentwindow::on_personalAreaButton_clicked()
 {
+    int UserID = m_User.ID;
+    m_User = UserDb::instance().getUserByID(UserID);
     studentpersonalwindow spw(nullptr, m_User);
     spw.exec();
 
@@ -31,7 +33,7 @@ void studentwindow::on_personalAreaButton_clicked()
 void studentwindow::on_facultativButton_clicked()
 {
     hide();
-    studentfacultativeswindow sfw;
+    studentfacultativeswindow sfw(nullptr, m_User);
     sfw.exec();
     show();
 }

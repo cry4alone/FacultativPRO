@@ -1,15 +1,15 @@
-#ifndef FACULTATIVESMODEL_H
-#define FACULTATIVESMODEL_H
+#ifndef FACULTATIVESMODELPERSONAL_H
+#define FACULTATIVESMODELPERSONAL_H
 #include <QAbstractTableModel>
 #include <QVector>
 #include "facultativ.h"
 #include "userdb.h"
 
-class FacultativesModel : public QAbstractTableModel
+class FacultativesModelPersonal : public QAbstractTableModel
 {
 public:
-    explicit FacultativesModel(QObject *parent = nullptr, bool mode = 0, int UserID = 0);
-    ~FacultativesModel();
+    explicit FacultativesModelPersonal(QObject *parent = nullptr);
+    ~FacultativesModelPersonal();
 private:
     QVector<Facultativ> m_facultatives;
 
@@ -21,5 +21,5 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 };
 
-#endif // FACULTATIVESMODEL_H
+#endif // FACULTATIVESMODELPERSONAL_H
 

@@ -10,6 +10,11 @@
     <height>304</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>13</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
@@ -20,6 +25,11 @@
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QLabel" name="nameLabel">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Name Surname</string>
          </property>
@@ -27,8 +37,13 @@
        </item>
        <item>
         <widget class="QLabel" name="roleLabel">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="text">
-          <string>Role</string>
+          <string>Role: Student</string>
          </property>
         </widget>
        </item>
@@ -63,6 +78,11 @@
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
           <widget class="QLineEdit" name="nameEdit">
+           <property name="font">
+            <font>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
            <property name="placeholderText">
             <string>Name</string>
            </property>
@@ -70,6 +90,11 @@
          </item>
          <item>
           <widget class="QLineEdit" name="surnameEdit">
+           <property name="font">
+            <font>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
            <property name="placeholderText">
             <string>Surname</string>
            </property>
@@ -81,6 +106,14 @@
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
           <widget class="QLineEdit" name="lineEditlogin">
+           <property name="font">
+            <font>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
            <property name="placeholderText">
             <string>Login</string>
            </property>
@@ -88,6 +121,11 @@
          </item>
          <item>
           <widget class="QLineEdit" name="lineEditpass">
+           <property name="font">
+            <font>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
            <property name="inputMethodHints">
             <set>Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
            </property>
@@ -105,6 +143,11 @@
         <layout class="QHBoxLayout" name="horizontalLayout_4">
          <item>
           <widget class="QLineEdit" name="groupEdit">
+           <property name="font">
+            <font>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
            <property name="placeholderText">
             <string>Group</string>
            </property>
@@ -112,6 +155,11 @@
          </item>
          <item>
           <widget class="QLineEdit" name="lineEditPhone">
+           <property name="font">
+            <font>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
            <property name="placeholderText">
             <string>Phone</string>
            </property>
@@ -140,6 +188,11 @@
      </item>
      <item>
       <widget class="QPushButton" name="CancelButton">
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Cancel</string>
        </property>
@@ -147,6 +200,11 @@
      </item>
      <item>
       <widget class="QPushButton" name="ChangeButton">
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Change</string>
        </property>

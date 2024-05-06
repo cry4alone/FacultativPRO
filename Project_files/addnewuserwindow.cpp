@@ -8,6 +8,7 @@ AddNewUserWindow::AddNewUserWindow(QWidget *parent)
     , ui(new Ui::AddNewUserWindow)
 {
     ui->setupUi(this);
+
 }
 
 AddNewUserWindow::~AddNewUserWindow()
@@ -28,6 +29,16 @@ void AddNewUserWindow::on_pushBtnOk_clicked()
     QString Name = ui->nameEdit->text();
     QString Surname = ui->surnameEdit->text();
     int index = ui->comboBox->currentIndex();
+    if (login.trimmed().isEmpty())
+    {
+        QMessageBox::warning(this,"Error","Login can't be empty!");
+        return;
+    }
+    if(pass.isEmpty() == true)
+    {
+        QMessageBox::warning(this,"Ошибка","Password can't be empty!");
+        return;
+    }
     auto& db = UserDb::instance();
     User* currUser = nullptr;
     if (index == 0)

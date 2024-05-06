@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QPushButton" name="pushButton">
       <property name="text">
-       <string>Exit</string>
+       <string>Change user</string>
       </property>
      </widget>
     </item>
@@ -54,11 +54,11 @@
        <widget class="QLabel" name="label">
         <property name="font">
          <font>
-          <pointsize>12</pointsize>
+          <pointsize>13</pointsize>
          </font>
         </property>
         <property name="text">
-         <string>Редактирование пользователей</string>
+         <string>   Users editing   </string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -68,14 +68,14 @@
       <item>
        <widget class="QPushButton" name="pushBtnNewUser">
         <property name="text">
-         <string>Добавить нового пользователя</string>
+         <string>Add new user</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="pushBtnAllUsers">
         <property name="text">
-         <string>Просмотр всех пользователей</string>
+         <string>Show all users</string>
         </property>
        </widget>
       </item>

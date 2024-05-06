@@ -1,36 +1,27 @@
-#include "facultativesmodel.h"
+#include "FacultativesModelPersonal.h"
 
-FacultativesModel::FacultativesModel(QObject *parent, bool mode, int UserID)
+FacultativesModelPersonal::FacultativesModelPersonal(QObject *parent)
     : QAbstractTableModel{parent}
 {
-    qDebug() << UserID << mode;
-    if (mode) //0 - personal4sudent 1 - allfacultatives
-    {
-        m_facultatives = UserDb::instance().getAllFacultatives();
-    }
-    else
-    {
-        m_facultatives = UserDb::instance().getUserFacultatives(UserID);
-    }
-
+    m_facultatives = UserDb::instance().getAllFacultatives();
 }
 
-FacultativesModel::~FacultativesModel()
+FacultativesModelPersonal::~FacultativesModelPersonal()
 {
 
 }
 
-int FacultativesModel::rowCount(const QModelIndex &parent) const
+int FacultativesModelPersonal::rowCount(const QModelIndex &parent) const
 {
     return m_facultatives.size();
 }
 
-int FacultativesModel::columnCount(const QModelIndex &parent) const
+int FacultativesModelPersonal::columnCount(const QModelIndex &parent) const
 {
     return 3;
 }
 
-QVariant FacultativesModel::data(const QModelIndex &index, int role) const
+QVariant FacultativesModelPersonal::data(const QModelIndex &index, int role) const
 {
     if ((index.column() > 3) || (index.row() > m_facultatives.size()))
         return {};
@@ -48,7 +39,7 @@ QVariant FacultativesModel::data(const QModelIndex &index, int role) const
     return {};
 }
 
-QVariant FacultativesModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant FacultativesModelPersonal::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (role != Qt::DisplayRole) {
         return QAbstractTableModel::headerData(section, orientation, role);
@@ -60,9 +51,9 @@ QVariant FacultativesModel::headerData(int section, Qt::Orientation orientation,
         case 0:
             return "Discipline Name";
         case 1:
-            return "Teacher Surname";
+            return "Surname";
         case 2:
-            return "Teacher Name";
+            return "Name";
         default:
             break;
         }
