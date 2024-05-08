@@ -22,11 +22,12 @@ void studentwindow::on_changeUserButton_clicked()
 
 void studentwindow::on_personalAreaButton_clicked()
 {
+    hide();
     int UserID = m_User.ID;
     m_User = UserDb::instance().getUserByID(UserID);
     studentpersonalwindow spw(nullptr, m_User);
     spw.exec();
-
+    show();
 }
 
 

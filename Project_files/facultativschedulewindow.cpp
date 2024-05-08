@@ -12,3 +12,9 @@ facultativScheduleWindow::~facultativScheduleWindow()
 {
     delete ui;
 }
+
+void facultativScheduleWindow::on_backButton_clicked()
+{
+    close();
+}
+

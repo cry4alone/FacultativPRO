@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QMainWindow>
-
+#include "facultativschedulewindow.h"
 #include "user.h"
 
 class AuthWindow;
@@ -18,10 +18,12 @@ public:
 private slots:
     void onUserEntered(User::Role, int);
     void openAuthWindow();
+    void openScheduleStudent();
 
 private:
     AuthWindow* m_authWindow;
     QMainWindow* m_mainWindow;
+    facultativScheduleWindow* m_scheduleWindow;
 };
 
 #endif // WINDOWNAVIGATOR_H

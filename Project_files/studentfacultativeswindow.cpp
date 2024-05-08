@@ -29,3 +29,11 @@ void studentfacultativeswindow::on_signFacultativButton_clicked()
     sffw.exec();
     ui->tableView->setModel(new FacultativesModel(nullptr, 0, m_user.ID));
 }
+
+void studentfacultativeswindow::on_tableView_doubleClicked(const QModelIndex &index)
+{
+    hide();
+    facultativScheduleWindow fsw;
+    show();
+}
+

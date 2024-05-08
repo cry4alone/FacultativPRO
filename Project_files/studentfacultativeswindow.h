@@ -6,6 +6,7 @@
 #include "user.h"
 #include "studentfacultativeswindow.h"
 #include "signforfacultativwindow.h"
+#include "facultativschedulewindow.h"
 
 namespace Ui {
 class studentfacultativeswindow;
@@ -23,6 +24,8 @@ private slots:
     void on_ButtonBack_clicked();
 
     void on_signFacultativButton_clicked();
+
+    void on_tableView_doubleClicked(const QModelIndex &index);
 
 private:
     Ui::studentfacultativeswindow *ui;

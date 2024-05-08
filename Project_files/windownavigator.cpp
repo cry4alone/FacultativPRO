@@ -54,3 +54,8 @@ void WindowNavigator::openAuthWindow()
     delete m_mainWindow;
     m_authWindow->show();
 }
+
+void WindowNavigator::openScheduleStudent()
+{
+
+}

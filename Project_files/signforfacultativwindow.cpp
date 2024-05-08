@@ -37,13 +37,6 @@ void signForFacultativWindow::on_tableView_doubleClicked(const QModelIndex &inde
         UserDb::instance().signForFacultativ(m_UserID, facultativeId);
         close();
     }
-    else
-    {
-
-    }
-
-
-
 }
 
 
