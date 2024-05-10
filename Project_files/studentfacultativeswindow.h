@@ -1,7 +1,7 @@
 #ifndef STUDENTFACULTATIVESWINDOW_H
 #define STUDENTFACULTATIVESWINDOW_H
 
-#include <QDialog>
+#include <QMainWindow>
 #include "facultativesmodel.h"
 #include "user.h"
 #include "studentfacultativeswindow.h"

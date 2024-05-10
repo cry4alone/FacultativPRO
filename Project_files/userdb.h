@@ -18,12 +18,14 @@ public:
     QVector<User> getAllUsers();
     QPair<QString, int> AuthCheck(QString login, QString pass);
     User getUserByID(int id);
-    void addFacultativ(const Facultativ& facultativ);
+    bool addFacultativ(const Facultativ& facultativ);
     bool changeUser(const User& user);
     QVector<Facultativ> getAllFacultatives();
     void deleteUser(int id);
     bool signForFacultativ(int UserID, int FacultativID);
     QVector<Facultativ> getUserFacultatives(int UserID);
+    Facultativ getFacultativByID(int FacID);
+    void deleteStudentFromFacultative(int UserID, int FacultativID);
 private:
     UserDb();
     QSqlDatabase m_database;

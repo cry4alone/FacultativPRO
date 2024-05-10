@@ -18,8 +18,14 @@ public:
 signals:
     void logout();
 
+private slots:
+    void on_facultativButton_clicked();
+
+    void on_createButton_clicked();
+
 private:
     Ui::TeacherWindow *ui;
+    int m_UserID;
 };
 
 #endif // TEACHERWINDOW_H

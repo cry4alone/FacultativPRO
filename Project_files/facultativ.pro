@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql svg
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,6 +24,7 @@ SOURCES += \
     studentfacultativeswindow.cpp \
     studentpersonalwindow.cpp \
     studentwindow.cpp \
+    teachercreatefacultative.cpp \
     teacherwindow.cpp \
     user.cpp \
     userdb.cpp \
@@ -45,6 +46,7 @@ HEADERS += \
     studentfacultativeswindow.h \
     studentpersonalwindow.h \
     studentwindow.h \
+    teachercreatefacultative.h \
     teacherwindow.h \
     user.h \
     userdb.h \
@@ -64,6 +66,7 @@ FORMS += \
     studentfacultativeswindow.ui \
     studentpersonalwindow.ui \
     studentwindow.ui \
+    teachercreatefacultative.ui \
     teacherwindow.ui
 
 # Default rules for deployment.

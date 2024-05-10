@@ -32,8 +32,10 @@ void studentfacultativeswindow::on_signFacultativButton_clicked()
 
 void studentfacultativeswindow::on_tableView_doubleClicked(const QModelIndex &index)
 {
-    hide();
-    facultativScheduleWindow fsw;
-    show();
+    int FacID = ui->tableView->model()->data(index, Qt::UserRole).toInt();
+    Facultativ m_Fac = UserDb::instance().getFacultativByID(FacID);
+    facultativScheduleWindow fsw(nullptr , m_Fac, m_user.ID);
+    fsw.exec();
+    ui->tableView->setModel(new FacultativesModel(nullptr, 0, m_user.ID));
 }
 

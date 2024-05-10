@@ -29,7 +29,7 @@ void WindowNavigator::onUserEntered(User::Role role, int UserID)
         m_mainWindow = adminWindow;
     }
     else if (role == User::Teacher) {
-        TeacherWindow *teacherWindow(new TeacherWindow);
+        TeacherWindow *teacherWindow(new TeacherWindow(nullptr, UserID));
         {
             connect(teacherWindow, &TeacherWindow::logout,
                     this, WindowNavigator::openAuthWindow);
