@@ -5,13 +5,41 @@ FacultativesModel::FacultativesModel(QObject *parent, bool mode, int UserID)
 {
     if (mode) //0 - personal4sudent 1 - allfacultatives
     {
-        m_facultatives = UserDb::instance().getAllFacultatives();
+        setAllFacultatives();
     }
     else
     {
-        m_facultatives = UserDb::instance().getUserFacultatives(UserID);
+        setIdFacultatives(UserID);
     }
+}
 
+void FacultativesModel::setIdFacultatives(int UserID)
+{
+    m_facultatives = UserDb::instance().getUserFacultatives(UserID);
+}
+void FacultativesModel::setTeacherFacultatives(int UserID)
+{
+    m_facultatives = UserDb::instance().getTeacherFacultativ(UserID);
+}
+
+void FacultativesModel::setAllFacultatives()
+{
+    beginInsertRows(QModelIndex(), size(), size());
+    m_facultatives = UserDb::instance().getAllFacultatives();
+    endInsertRows();
+}
+
+void FacultativesModel::addFacultativ(Facultativ facultativ)
+{
+    beginInsertRows(QModelIndex(), size(), size());
+    m_facultatives.append(facultativ);
+    endInsertRows();
+    UserDb::instance().addFacultativ(facultativ);
+}
+
+int FacultativesModel::size()
+{
+    return m_facultatives.size();
 }
 
 FacultativesModel::~FacultativesModel()

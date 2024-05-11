@@ -20,13 +20,15 @@ TeacherWindow::~TeacherWindow()
 
 void TeacherWindow::on_facultativButton_clicked()
 {
-    //TODO
+    teacherFacultativesWindow tfw(nullptr, m_UserID);
+    hide();
+    tfw.exec();
+    show();
 }
 
 
 void TeacherWindow::on_createButton_clicked()
 {
-    qDebug() << m_UserID;
     teacherCreateFacultative tcf(nullptr, m_UserID);
     hide();
     tcf.exec();

@@ -25,6 +25,8 @@ SOURCES += \
     studentpersonalwindow.cpp \
     studentwindow.cpp \
     teachercreatefacultative.cpp \
+    teacherfacultativechangewindow.cpp \
+    teacherfacultativeswindow.cpp \
     teacherwindow.cpp \
     user.cpp \
     userdb.cpp \
@@ -47,6 +49,8 @@ HEADERS += \
     studentpersonalwindow.h \
     studentwindow.h \
     teachercreatefacultative.h \
+    teacherfacultativechangewindow.h \
+    teacherfacultativeswindow.h \
     teacherwindow.h \
     user.h \
     userdb.h \
@@ -67,6 +71,8 @@ FORMS += \
     studentpersonalwindow.ui \
     studentwindow.ui \
     teachercreatefacultative.ui \
+    teacherfacultativechangewindow.ui \
+    teacherfacultativeswindow.ui \
     teacherwindow.ui
 
 # Default rules for deployment.

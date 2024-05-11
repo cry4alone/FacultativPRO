@@ -333,6 +333,50 @@ void UserDb::deleteStudentFromFacultative(int UserID, int FacultativID)
     }
 }
 
+QVector<Facultativ> UserDb::getTeacherFacultativ(int UserID)
+{
+    QVector<Facultativ> facultatives;
+    Facultativ facultativ;
+    QSqlQuery query(m_database);
+    query.prepare("SELECT Facultatives.ID, Facultatives.ID_Teacher, "
+                  " Facultatives.Discipline_Name, Users.Surname, Users.Name, Facultatives.Day_of_Week, Facultatives.Start_Date, Facultatives.End_Date, Facultatives.Type_of_Lesson FROM Facultatives INNER JOIN Users ON Facultatives.ID_Teacher = Users.ID INNER JOIN Study ON Facultatives.ID = Study.ID_Facultative WHERE Facultatives.ID_Teacher = :teacher_id;");
+    query.bindValue(":teacher_id", UserID);
+    if (!query.exec())
+    {
+        qWarning() << "Failed to execute query: " << query.lastError().text();
+    }
+    while (query.next())
+    {
+        int ID = query.value(0).toInt();
+        int ID_Teacher = query.value(1).toInt();
+        QString Discipline_Name = query.value(2).toString();
+        QString teacher_surname = query.value(3).toString();
+        QString teacher_name = query.value(4).toString();
+        int Day_of_Week = query.value(5).toInt();
+        QDate Start_Date = query.value(6).toDate();
+        QDate End_Date = query.value(7).toDate();
+        QString Type_of_lesson_String = query.value(8).toString();
+        Facultativ::Type_of_Lesson Type_of_lesson;
+        if (Type_of_lesson_String == "0")
+        {
+            Type_of_lesson = Facultativ::Type_of_Lesson::Lection;
+        }
+        else if (Type_of_lesson_String == "1")
+        {
+            Type_of_lesson = Facultativ::Type_of_Lesson::Laboratory_work;
+        }
+        else
+        {
+            Type_of_lesson = Facultativ::Type_of_Lesson::Practice_work;
+        }
+        facultativ = Facultativ(ID, ID_Teacher, Discipline_Name,
+                                teacher_surname, teacher_name, Day_of_Week, Start_Date, End_Date, Type_of_lesson);
+        facultatives.append(facultativ);
+    }
+    m_database.close();
+    return facultatives;
+}
+
 void deleteUser(int id)
 {
 

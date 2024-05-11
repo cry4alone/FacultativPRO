@@ -62,7 +62,7 @@ void facultativScheduleWindow::highlightweeklydates(Qt::DayOfWeek DayOfWeek, QDa
     QTextCharFormat format;
     format.setBackground(Qt::green);
     for (QDate date = Start_Date; date <= End_Date; date = date.addDays(1)) {
-        if (date.dayOfWeek() == DayOfWeek) { // Check if the date falls on a Friday
+        if (date.dayOfWeek() == DayOfWeek) {
             ui->calendarWidget->setDateTextFormat(date, format); // Highlight the date
         }
     }

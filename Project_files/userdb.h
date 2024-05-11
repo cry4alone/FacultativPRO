@@ -26,6 +26,7 @@ public:
     QVector<Facultativ> getUserFacultatives(int UserID);
     Facultativ getFacultativByID(int FacID);
     void deleteStudentFromFacultative(int UserID, int FacultativID);
+    QVector<Facultativ> getTeacherFacultativ(int UserID);
 private:
     UserDb();
     QSqlDatabase m_database;

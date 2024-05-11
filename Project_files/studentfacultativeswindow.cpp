@@ -7,7 +7,8 @@ studentfacultativeswindow::studentfacultativeswindow(QWidget *parent, User user)
 {
     m_user = user;
     ui->setupUi(this);
-    ui->tableView->setModel(new FacultativesModel(nullptr, 0, m_user.ID));
+    fac_mod = new FacultativesModel(nullptr, 0,m_user.ID);
+    ui->tableView->setModel(fac_mod);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableView->verticalHeader()->hide();
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -27,15 +28,19 @@ void studentfacultativeswindow::on_signFacultativButton_clicked()
 {
     signForFacultativWindow sffw(nullptr, m_user.ID);
     sffw.exec();
-    ui->tableView->setModel(new FacultativesModel(nullptr, 0, m_user.ID));
+
+    fac_mod = new FacultativesModel(nullptr, 0, m_user.ID);
+    ui->tableView->setModel(fac_mod);
 }
 
 void studentfacultativeswindow::on_tableView_doubleClicked(const QModelIndex &index)
 {
     int FacID = ui->tableView->model()->data(index, Qt::UserRole).toInt();
     Facultativ m_Fac = UserDb::instance().getFacultativByID(FacID);
-    facultativScheduleWindow fsw(nullptr , m_Fac, m_user.ID);
+    facultativScheduleWindow fsw(nullptr, m_Fac, m_user.ID);
+    fac_mod = new FacultativesModel(nullptr, 0, m_user.ID);
+    ui->tableView->setModel(fac_mod);
+    //fsw->reset(new facultativScheduleWindow(this , m_Fac, m_user.ID));
     fsw.exec();
-    ui->tableView->setModel(new FacultativesModel(nullptr, 0, m_user.ID));
 }
 

@@ -1,1 +1,5 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/">
+        <file>../../../../Downloads/calendar-symbol-svgrepo-com.svg</file>
+    </qresource>
+</RCC>

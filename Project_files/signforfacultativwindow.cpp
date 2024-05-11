@@ -24,7 +24,6 @@ void signForFacultativWindow::on_pushButton_clicked()
 }
 
 
-
 void signForFacultativWindow::on_tableView_doubleClicked(const QModelIndex &index)
 {
     const auto mi = index.siblingAtColumn(0);

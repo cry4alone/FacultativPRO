@@ -30,6 +30,8 @@ private slots:
 private:
     Ui::studentfacultativeswindow *ui;
     User m_user;
+    std::unique_ptr<facultativScheduleWindow> fsw;
+    FacultativesModel *fac_mod;
 };
 
 #endif // STUDENTFACULTATIVESWINDOW_H

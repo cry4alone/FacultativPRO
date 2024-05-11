@@ -7,12 +7,6 @@ teacherCreateFacultative::teacherCreateFacultative(QWidget *parent, int UserID) 
 {
     ui->setupUi(this);
     m_UserID = UserID;
-    QSvgRenderer renderer(QString("calender-2389150.svg"));
-    QPixmap pixmap(renderer.defaultSize());
-    pixmap.fill(Qt::transparent);
-    QPainter painter(&pixmap);
-    renderer.render(&painter);
-    ui->picture->setPixmap(pixmap);
 }
 
 teacherCreateFacultative::~teacherCreateFacultative()
@@ -59,8 +53,6 @@ void teacherCreateFacultative::on_createButton_clicked()
             QMessageBox::information(this, "Information", "Facultative added successfully!");
             close();
         }
-
-
     }
 
 }

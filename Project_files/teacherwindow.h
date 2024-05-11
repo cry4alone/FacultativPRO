@@ -1,6 +1,6 @@
 #ifndef TEACHERWINDOW_H
 #define TEACHERWINDOW_H
-
+#include "teacherfacultativeswindow.h"
 #include <QMainWindow>
 
 namespace Ui {
