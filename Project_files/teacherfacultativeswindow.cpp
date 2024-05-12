@@ -6,8 +6,7 @@ teacherFacultativesWindow::teacherFacultativesWindow(QWidget *parent, int UserID
     , ui(new Ui::teacherFacultativesWindow)
 {
     ui->setupUi(this);
-    qDebug() << UserID;
-    FacultativesModel *FacMod = new FacultativesModel(nullptr, 3, UserID);
+    FacMod = new FacultativesModel(nullptr, 3, UserID);
     FacMod->setTeacherFacultatives(UserID);
     ui->tableView->setModel(FacMod);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -17,6 +16,7 @@ teacherFacultativesWindow::teacherFacultativesWindow(QWidget *parent, int UserID
 
 teacherFacultativesWindow::~teacherFacultativesWindow()
 {
+    delete FacMod;
     delete ui;
 }
 
@@ -28,7 +28,8 @@ void teacherFacultativesWindow::on_pushButton_clicked()
 
 void teacherFacultativesWindow::on_tableView_doubleClicked(const QModelIndex &index)
 {
-    teacherFacultativeChangeWindow tfcw;
+    int FacID = FacMod->data(index,Qt::UserRole).toInt();
+    teacherFacultativeChangeWindow tfcw(nullptr, FacID);
     tfcw.exec();
 }
 

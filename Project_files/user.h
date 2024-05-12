@@ -18,6 +18,7 @@ public:
     QString Name;
     QString Surname;
     QString Group;
+    int FinalGrade;
 };
 
 #endif // USER_H

@@ -377,6 +377,49 @@ QVector<Facultativ> UserDb::getTeacherFacultativ(int UserID)
     return facultatives;
 }
 
+QVector<User> UserDb::getTeacherUsers(int FacID)
+{
+    QSqlQuery query(m_database);
+    QVector<User> Users;
+    query.prepare("SELECT Study.ID_Student, Study.Final_Grade, Users.Name, Users.Surname "
+                  " FROM Study "
+                  " INNER JOIN Users ON Study.ID_Student = Users.ID "
+                  " WHERE Study.ID_Facultative = :id_fac; ");
+    query.bindValue(":id_fac", FacID);
+    if (!query.exec())
+    {
+        qWarning() << "Failed to execute query: " << query.lastError().text();
+    }
+    while(query.next())
+    {
+        int ID = query.value(0).toInt();
+        int FinalGrade = query.value(1).toInt();
+        QString Name = query.value(2).toString();
+        QString Surname = query.value(3).toString();
+        User user;
+        user.ID = ID;
+        user.FinalGrade = FinalGrade;
+        user.Name = Name;
+        user.Surname = Surname;
+        Users.append(user);
+    }
+    m_database.close();
+    return Users;
+}
+
+void UserDb::setFinalGrade(int userId, int finalGrade, int FacID)
+{
+    QSqlQuery query(m_database);
+    query.prepare("UPDATE Study SET Final_Grade = :finalGrade WHERE ID_Student = :userId AND ID_Facultative = :FacID;");
+    query.bindValue(":finalGrade", finalGrade);
+    query.bindValue(":userId", userId);
+    query.bindValue(":FacID", FacID);
+    if (!query.exec())
+    {
+        qWarning() << "Failed to execute query: " << query.lastError().text();
+    }
+}
+
 void deleteUser(int id)
 {
 

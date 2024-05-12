@@ -2,6 +2,8 @@
 #define TEACHERFACULTATIVECHANGEWINDOW_H
 
 #include <QDialog>
+#include "userdb.h"
+#include "studentsmodel.h"
 
 namespace Ui {
 class teacherFacultativeChangeWindow;
@@ -12,13 +14,20 @@ class teacherFacultativeChangeWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit teacherFacultativeChangeWindow(QWidget *parent = nullptr);
+    explicit teacherFacultativeChangeWindow(QWidget *parent = nullptr, int FacID = -1);
     ~teacherFacultativeChangeWindow();
 
 private slots:
     void on_pushButton_clicked();
 
+    void on_confirmButton_clicked();
+
 private:
+    Facultativ m_facultativ;
+    int m_FacID;
+    void setEditingWidget();
+    void setGradingWidget();
+    StudentsModel *m_StudentsModel;
     Ui::teacherFacultativeChangeWindow *ui;
 };
 

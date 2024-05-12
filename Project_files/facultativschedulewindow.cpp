@@ -36,6 +36,7 @@ facultativScheduleWindow::facultativScheduleWindow(QWidget *parent, Facultativ f
     m_UserID = UserID;
     ui->label_facultativ_name->setText(m_facultativ.Discipline_Name + " facultativ");
     ui->label_teacher->setText("Your Teacher: " + m_facultativ.Teacher_Name + " " + m_facultativ.Teacher_Surname);
+    //ui->label_grade->setText("Your Grade: " + m_facultativ.);
     QList<QDate> datesToHighlight = {facultativ.Start_Date, facultativ.End_Date};
     QTextCharFormat format;
     highlightweeklydates(DayOfWeek, facultativ.Start_Date, facultativ.End_Date);

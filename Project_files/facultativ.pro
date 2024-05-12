@@ -23,6 +23,7 @@ SOURCES += \
     signforfacultativwindow.cpp \
     studentfacultativeswindow.cpp \
     studentpersonalwindow.cpp \
+    studentsmodel.cpp \
     studentwindow.cpp \
     teachercreatefacultative.cpp \
     teacherfacultativechangewindow.cpp \
@@ -47,6 +48,7 @@ HEADERS += \
     signforfacultativwindow.h \
     studentfacultativeswindow.h \
     studentpersonalwindow.h \
+    studentsmodel.h \
     studentwindow.h \
     teachercreatefacultative.h \
     teacherfacultativechangewindow.h \

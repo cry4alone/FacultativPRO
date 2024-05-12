@@ -24,6 +24,7 @@ private slots:
 
 private:
     Ui::teacherFacultativesWindow *ui;
+    FacultativesModel *FacMod;
 };
 
 #endif // TEACHERFACULTATIVESWINDOW_H
