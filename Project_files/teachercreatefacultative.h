@@ -27,6 +27,7 @@ private slots:
 
 private:
     Ui::teacherCreateFacultative *ui;
+    bool checkDate(QDate start, QDate finish);
     int m_UserID;
 };
 

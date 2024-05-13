@@ -44,9 +44,24 @@ void RegWindow::on_OkButton_clicked()
         QMessageBox::warning(this,"Ошибка","Passwords aren't the same!");
         return;
     }
+    if (name.toInt())
+    {
+        QMessageBox::warning(this,"Error","Name can't be number!");
+        return;
+    }
+    if (surname.toInt())
+    {
+        QMessageBox::warning(this,"Error","Surname can't be number!");
+        return;
+    }
+    if (name.isEmpty() || surname.isEmpty())
+    {
+        QMessageBox::warning(this,"Error","Surname or name can't be empty!");
+        return;
+    }
     User* currUser = new User(login, pass, User::Role::Student, name, surname, group);
     UserDb::instance().addUser(*currUser);
-    QMessageBox::information(this,"Notification","Personal account was successfully created!");
+    QMessageBox::information(this , "Notification", "Personal account was successfully created!");
     delete currUser;
     close();
 }

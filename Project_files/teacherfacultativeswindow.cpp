@@ -28,7 +28,8 @@ void teacherFacultativesWindow::on_pushButton_clicked()
 
 void teacherFacultativesWindow::on_tableView_doubleClicked(const QModelIndex &index)
 {
-    int FacID = FacMod->data(index,Qt::UserRole).toInt();
+    const auto mi = index.siblingAtColumn(0);
+    int FacID = FacMod->data(mi,Qt::UserRole).toInt();
     teacherFacultativeChangeWindow tfcw(nullptr, FacID);
     tfcw.exec();
 }

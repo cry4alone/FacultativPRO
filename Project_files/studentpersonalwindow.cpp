@@ -14,6 +14,9 @@ studentpersonalwindow::studentpersonalwindow(QWidget *parent, User user) :
     ui->lineEditpass->setText(m_user.Password);
     ui->surnameEdit->setText(m_user.Surname);
     ui->groupEdit->setText(m_user.Group);
+    ui->groupEdit->setValidator(
+         new QRegularExpressionValidator(
+             QRegularExpression(R"([A-Z]{2}\d{2}-\d{2}[A-Z]{1})")));
 }
 
 studentpersonalwindow::~studentpersonalwindow()
@@ -34,6 +37,31 @@ void studentpersonalwindow::on_ChangeButton_clicked()
     const auto name = ui->nameEdit->text();
     const auto surname = ui->surnameEdit->text();
     const auto group = ui->groupEdit->text();
+    if(login.isEmpty() == true)
+    {
+        QMessageBox::warning(this,"Ошибка","Login can't be empty!");
+        return;
+    }
+    if(pass.isEmpty() == true)
+    {
+        QMessageBox::warning(this,"Ошибка","Password can't be empty!");
+        return;
+    }
+    if (name.toInt())
+    {
+        QMessageBox::warning(this,"Error","Name can't be number!");
+        return;
+    }
+    if (surname.toInt())
+    {
+        QMessageBox::warning(this,"Error","Surname can't be number!");
+        return;
+    }
+    if (name.isEmpty() || surname.isEmpty())
+    {
+        QMessageBox::warning(this,"Error","Surname or name can't be empty!");
+        return;
+    }
     m_user.Login = login;
     m_user.Password = pass;
     m_user.Name = name;

@@ -3,7 +3,6 @@
 
 #include <QDialog>
 #include "userdb.h"
-#include "studentuser.h"
 
 
 namespace Ui {

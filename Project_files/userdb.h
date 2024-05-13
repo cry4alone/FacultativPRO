@@ -4,7 +4,6 @@
 #include <QString>
 #include <QFile>
 #include <QtSql>
-#include <user.h>
 #include "user.h"
 #include "facultativ.h"
 

@@ -1,10 +1,6 @@
 #include <QTextStream>
 #include <QDebug>
 #include "userdb.h"
-#include "studentuser.h"
-#include "adminuser.h"
-#include "teacheruser.h"
-
 
 UserDb::UserDb()
 {

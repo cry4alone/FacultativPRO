@@ -44,6 +44,31 @@ void ChangeUserFromAdmin::on_changeButton_clicked()
     const auto name = ui->lineEditName->text();
     const auto surname = ui->lineEditSurname->text();
     const auto group = ui->lineEditgroup->text();
+    if (login.trimmed().isEmpty())
+    {
+        QMessageBox::warning(this,"Error","Login can't be empty!");
+        return;
+    }
+    if(pass.isEmpty() == true)
+    {
+        QMessageBox::warning(this,"Error","Password can't be empty!");
+        return;
+    }
+    if (name.toInt())
+    {
+        QMessageBox::warning(this,"Error","Name can't be number!");
+        return;
+    }
+    if (surname.toInt())
+    {
+        QMessageBox::warning(this,"Error","Surname can't be number!");
+        return;
+    }
+    if (name.isEmpty() || surname.isEmpty())
+    {
+        QMessageBox::warning(this,"Error","Surname or name can't be empty!");
+        return;
+    }
     user.Login = login;
     user.Password = pass;
     user.Name = name;

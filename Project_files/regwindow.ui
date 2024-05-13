@@ -81,7 +81,7 @@
      <item>
       <widget class="QLineEdit" name="groupEdit">
        <property name="placeholderText">
-        <string>Group</string>
+        <string>Group (KI22-06B)</string>
        </property>
       </widget>
      </item>

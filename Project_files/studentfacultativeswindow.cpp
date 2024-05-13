@@ -35,12 +35,12 @@ void studentfacultativeswindow::on_signFacultativButton_clicked()
 
 void studentfacultativeswindow::on_tableView_doubleClicked(const QModelIndex &index)
 {
-    int FacID = ui->tableView->model()->data(index, Qt::UserRole).toInt();
+    const auto mi = index.siblingAtColumn(0);
+    int FacID = ui->tableView->model()->data(mi, Qt::UserRole).toInt();
     Facultativ m_Fac = UserDb::instance().getFacultativByID(FacID);
     facultativScheduleWindow fsw(nullptr, m_Fac, m_user.ID);
     fac_mod = new FacultativesModel(nullptr, 0, m_user.ID);
     ui->tableView->setModel(fac_mod);
-    //fsw->reset(new facultativScheduleWindow(this , m_Fac, m_user.ID));
     fsw.exec();
 }
 

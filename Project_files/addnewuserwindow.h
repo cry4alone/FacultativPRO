@@ -4,8 +4,6 @@
 #include <QDialog>
 #include <QString>
 #include "user.h"
-#include "teacheruser.h"
-#include "adminuser.h"
 #include <qmessagebox.h>
 
 namespace Ui {
@@ -27,6 +25,7 @@ private slots:
 
 private:
     Ui::AddNewUserWindow *ui;
+    bool isNumber(QString &str);
 };
 
 #endif // ADDNEWUSERWINDOW_H

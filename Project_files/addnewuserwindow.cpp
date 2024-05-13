@@ -26,6 +26,7 @@ void AddNewUserWindow::on_pushBtnOk_clicked()
 {
     QString login = ui->lineEditlogin->text();
     QString pass = ui->lineEditpass->text();
+    QString rpass = ui->lineEditrepeatpass->text();
     QString Name = ui->nameEdit->text();
     QString Surname = ui->surnameEdit->text();
     int index = ui->comboBox->currentIndex();
@@ -36,13 +37,33 @@ void AddNewUserWindow::on_pushBtnOk_clicked()
     }
     if(pass.isEmpty() == true)
     {
-        QMessageBox::warning(this,"Ошибка","Password can't be empty!");
+        QMessageBox::warning(this,"Error","Password can't be empty!");
+        return;
+    }
+    if(pass != rpass)
+    {
+        QMessageBox::warning(this,"Error","Passwords aren't the same!");
         return;
     }
     auto& db = UserDb::instance();
     User* currUser = nullptr;
     if (index == 0)
     {
+        if (isNumber(Name))
+        {
+            QMessageBox::warning(this,"Error","Name can't be number!");
+            return;
+        }
+        if (isNumber(Surname))
+        {
+            QMessageBox::warning(this,"Error","Surname can't be number!");
+            return;
+        }
+        if (Name.isEmpty() || Surname.isEmpty())
+        {
+            QMessageBox::warning(this,"Error","Surname or name can't be empty!");
+            return;
+        }
         User::Role role = User::Role::Teacher;
         currUser = new User(login, pass, role, Name, Surname, NULL);
     }
@@ -52,8 +73,16 @@ void AddNewUserWindow::on_pushBtnOk_clicked()
         currUser = new User(login, pass, role, NULL, NULL, NULL);
     }
     db.addUser(*currUser);
-    QMessageBox::information(this,"Уведомление","Учетная запись успешно создана!");
+    QMessageBox::information(this,"Notification","Your account was successfully created!");
     delete currUser;
     close();
 }
+
+bool AddNewUserWindow::isNumber(QString &str)
+{
+    bool ok;
+    int num = str.toInt(&ok);
+    return ok;
+}
+
 

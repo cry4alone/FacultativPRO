@@ -79,6 +79,11 @@ void teacherFacultativeChangeWindow::on_confirmButton_clicked()
 bool teacherFacultativeChangeWindow::getAllTheData()
 {
     QString Discipline_name = ui->nameEdit->text();
+    if (Discipline_name.trimmed() == "")
+    {
+        QMessageBox::warning(this, "Warning", "Discipline Name can't be empty!");
+        return true;
+    }
     QDate start_date = ui->startDateEdit->date();
     QDate end_date = ui->endDateEdit->date();
     if(checkDate(start_date, end_date))

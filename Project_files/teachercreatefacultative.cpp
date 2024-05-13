@@ -27,8 +27,18 @@ void teacherCreateFacultative::on_createButton_clicked()
     if (result == QMessageBox::Yes)
     {
         QString Discipline_name = ui->nameEdit->text();
+        if (Discipline_name.trimmed() == "")
+        {
+            QMessageBox::warning(this, "Warning", "Discipline Name can't be empty!");
+            return;
+        }
         QDate start_date = ui->startDateEdit->date();
         QDate end_date = ui->endDateEdit->date();
+        if(checkDate(start_date, end_date))
+        {
+            QMessageBox::warning(this, "Warning", "Discipline Name can't be empty!");
+            return;
+        }
         int day_of_week = ui->dayBox->currentIndex();
         int type_of_lesson = ui->laboratoryBox->currentIndex();
         QString type_of_lesson_string  = QString::number(type_of_lesson);
@@ -54,7 +64,21 @@ void teacherCreateFacultative::on_createButton_clicked()
             close();
         }
     }
-
 }
 
+bool teacherCreateFacultative::checkDate(QDate start, QDate finish)
+{
+    QDate currDate = QDate::currentDate();
+    if ((start < currDate || finish < currDate) || (start == finish))
+    {
+        QMessageBox::warning(this, "Warning", "Check your dates!");
+        return true;
+    }
+    else if (start > finish)
+    {
+        QMessageBox::warning(this, "Warning", "Start date is bigger than end date!");
+        return true;
+    }
+    return false;
+}
 
