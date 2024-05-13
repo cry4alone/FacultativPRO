@@ -25,6 +25,8 @@ private slots:
 private:
     Ui::checkalluserswindow *ui;
     UsersModel *m_usersModel;
+    void UpdateUser(int UserId);
+    void DeleteUser(int UserId);
 };
 
 #endif // CHECKALLUSERSWINDOW_H

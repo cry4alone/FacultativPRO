@@ -451,7 +451,13 @@ int UserDb::getFinalGrade(int UserID, int FacID)
     return -1;
 }
 
-void deleteUser(int id)
+void UserDb::deleteUser(int id)
 {
-
+    QSqlQuery query(m_database);
+    query.prepare("DELETE FROM Users WHERE ID = :UserID;");
+    query.bindValue(":UserID", id);
+    if (!query.exec())
+    {
+        qWarning() << "Failed to execute query: " << query.lastError().text();
+    }
 }

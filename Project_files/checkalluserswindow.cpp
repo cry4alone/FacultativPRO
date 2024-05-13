@@ -29,8 +29,35 @@ void checkalluserswindow::on_tableViewUsers_doubleClicked(const QModelIndex &ind
 {
     const auto mi = index.siblingAtColumn(0);
     int userId = ui->tableViewUsers->model()->data(mi, Qt::UserRole).toInt();
-    ChangeUserFromAdmin wn(userId);
-    wn.exec();
+    if(ui->comboBoxMode->currentIndex())
+    {
+        DeleteUser(userId);
+    }
+    else
+    {
+        UpdateUser(userId);
+    }
     ui->tableViewUsers->setModel(new UsersModel);
 }
 
+void checkalluserswindow::DeleteUser(int UserId)
+{
+    QMessageBox::StandardButton result = QMessageBox::question(this,"Warning", "This action will delete the user and all associated dependencies. Are you sure you want to proceed?", QMessageBox::Yes|QMessageBox::No);
+    //TODO : обработать нажатия кнопок
+    if (result == QMessageBox::Yes)
+    {
+        UserDb::instance().deleteUser(UserId);
+        QMessageBox::information(this,"Notification","User was deleted successfully!");
+    }
+    else
+    {
+        return;
+    }
+
+}
+
+void checkalluserswindow::UpdateUser(int UserId)
+{
+    ChangeUserFromAdmin wn(UserId);
+    wn.exec();
+}

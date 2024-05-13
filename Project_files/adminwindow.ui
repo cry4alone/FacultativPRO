@@ -15,13 +15,6 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QPushButton" name="pushButton">
-      <property name="text">
-       <string>Change user</string>
-      </property>
-     </widget>
-    </item>
     <item row="1" column="1">
      <spacer name="verticalSpacer">
       <property name="orientation">
@@ -58,7 +51,7 @@
          </font>
         </property>
         <property name="text">
-         <string>   Users editing   </string>
+         <string>Administration</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -106,6 +99,30 @@
        </size>
       </property>
      </spacer>
+    </item>
+    <item row="0" column="0" colspan="3">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="text">
+         <string>Change user</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>

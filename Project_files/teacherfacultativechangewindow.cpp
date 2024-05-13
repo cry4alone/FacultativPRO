@@ -60,20 +60,24 @@ void teacherFacultativeChangeWindow::setGradingWidget()
 
 void teacherFacultativeChangeWindow::on_confirmButton_clicked()
 {
-    QVector<QPair<int, int>> changedUsers = m_StudentsModel->getChangedUsers();
-
-    for (const QPair<int, int> &user : changedUsers) {
-        UserDb::instance().setFinalGrade(user.first, user.second, m_FacID);
-    }
-
-    // Очищаем список измененных строк и временные значения FinalGrade
-    m_StudentsModel->clearChangedRows();
-    m_StudentsModel->m_tempFinalGrades.clear();
-    if(getAllTheData())
+    QMessageBox::StandardButton result = QMessageBox::question(this,"Question", "Are you sure you want to change facultative?", QMessageBox::Yes|QMessageBox::No);
+    if (result == QMessageBox::Yes)
     {
-        return;
+        QVector<QPair<int, int>> changedUsers = m_StudentsModel->getChangedUsers();
+
+        for (const QPair<int, int> &user : changedUsers) {
+            UserDb::instance().setFinalGrade(user.first, user.second, m_FacID);
+        }
+
+        // Очищаем список измененных строк и временные значения FinalGrade
+        m_StudentsModel->clearChangedRows();
+        m_StudentsModel->m_tempFinalGrades.clear();
+        if(getAllTheData())
+        {
+            return;
+        }
+        close();
     }
-    close();
 }
 
 bool teacherFacultativeChangeWindow::getAllTheData()
