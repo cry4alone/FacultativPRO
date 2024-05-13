@@ -9,6 +9,7 @@ checkalluserswindow::checkalluserswindow(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle("Administration");
+    setWindowIcon(QIcon(":/icon/Icon"));
     m_usersModel = new UsersModel;
     m_usersModel->getOnlyRole(4);
     ui->tableViewUsers->setModel(m_usersModel);

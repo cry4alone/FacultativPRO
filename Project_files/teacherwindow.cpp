@@ -7,6 +7,7 @@ TeacherWindow::TeacherWindow(QWidget *parent, int UserID)
     , ui(new Ui::TeacherWindow)
 {
     ui->setupUi(this);
+    setWindowIcon(QIcon(":/icon/Icon"));
     m_UserID = UserID;
     connect(ui->actionChangeUser, &QAction::triggered,
             this, &TeacherWindow::logout);

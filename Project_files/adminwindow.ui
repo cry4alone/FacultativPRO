@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>AdminWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="1" column="1">

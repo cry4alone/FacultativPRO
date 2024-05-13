@@ -8,6 +8,7 @@ studentpersonalwindow::studentpersonalwindow(QWidget *parent, User user) :
     m_user = user;
     ui->setupUi(this);
     this->setWindowTitle("Personal Information");
+    setWindowIcon(QIcon(":/icon/Icon"));
     ui->lineEditpass->setEchoMode(QLineEdit::Normal);
     ui->nameLabel->setText("User ID: " + QString::number(m_user.ID));
     ui->nameEdit->setText(m_user.Name);

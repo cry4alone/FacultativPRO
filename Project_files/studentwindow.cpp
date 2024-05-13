@@ -6,6 +6,7 @@ studentwindow::studentwindow(QWidget *parent, int UserID) :
     ui(new Ui::studentwindow)
 {
     ui->setupUi(this);
+    setWindowIcon(QIcon(":/icon/Icon"));
     m_User = UserDb::instance().getUserByID(UserID);
 }
 

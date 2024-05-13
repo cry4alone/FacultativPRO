@@ -1,0 +1,167 @@
+* {
+    font-family: "RussoOne-Regular";
+}
+QPushButton {
+background-color: #5d71F1;
+color: white;
+border: 1px;
+border-radius: 5px;
+padding: 5px;
+}
+QPushButton:hover {
+    background-color: #282a35; 
+}
+QLineEdit {
+    background-color: #f1f1f1;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    selection-background-color: #5d71F1;
+    selection-color: #fff;
+}
+
+QLineEdit:focus {
+    border: 1px solid #5d71F1;
+}
+
+QTableView {
+    background-color: #f1f1f1;
+    alternating-row-color: #f9f9f9;
+    selection-background-color: #5d71F1;
+    selection-color: #fff;
+    gridline-color: #ccc;
+    border: none;
+}
+
+QTableView::item:selected {
+    background-color: #5d71F1;
+    color: #fff;
+}
+
+QTableView QHeaderView::section {
+    background-color: #5d71F1;
+    color: #fff;
+    padding: 5px;
+    border: none;
+}
+
+QTableView QHeaderView {
+    border: none;
+}
+
+QTableCornerButton::section {
+    background-color: #5d71F1;
+    border: none;
+}
+
+QComboBox {
+    background-color: #5d71F1;
+    color: #fff;
+    border: 1px solid #5d71F1;
+    border-radius: 5px;
+    padding: 5px;
+    selection-background-color: #5d71F1;
+    selection-color: #fff;
+}
+
+QComboBox:editable {
+    background-color: #fff;
+    color: #333;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable {
+     background-color: #5d71F1;
+     color: #fff;
+}
+
+QComboBox:on { /* shift the text when the popup opens */
+    padding-top: 3px;
+    padding-left: 4px;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: #5d71F1;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+}
+
+QComboBox::down-arrow {
+    image: url(:/icon/resc/down-arrow.png);
+    width: 8px;
+    height: 8px;
+}
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    top: 1px;
+    left: 1px;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #fff;
+    color: rgb(0, 0, 0);
+    border: none;
+    selection-background-color: #5d71F1;
+    selection-color: #fff;
+}
+
+QCalendarWidget {
+    background-color: #f1f1f1;
+    color: #333;
+    border: none;
+    selection-background-color: #5d71F1;
+    selection-color: #fff;
+    gridline-color: #ccc;
+}
+
+QCalendarWidget QAbstractItemView {
+    background-color: #f1f1f1;
+    color: #333;
+    border: none;
+    selection-background-color: #5d71F1;
+    selection-color: #fff;
+    gridline-color: #ccc;
+}
+
+QCalendarWidget QAbstractItemView::item:selected {
+    background-color: #5d71F1;
+    color: #fff;
+}
+
+QCalendarWidget QToolButton {
+    background-color: #5d71F1;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+QCalendarWidget QToolButton:hover {
+    background-color: #282a35;
+}
+
+QCalendarWidget QToolButton:pressed {
+    background-color: #35495e;
+}
+
+QCalendarWidget QLabel {
+    color: #333;
+}
+
+QCalendarWidget QLabel#qt_calendar_navigationbar {
+    background-color: #5d71F1;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+QCalendarWidget QToolButton::menu-indicator {
+    subcontrol-position: right 5px;
+    width: 10px;
+    height: 10px;
+}

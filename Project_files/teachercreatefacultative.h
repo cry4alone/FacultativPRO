@@ -2,11 +2,10 @@
 #define TEACHERCREATEFACULTATIVE_H
 
 #include <QDialog>
-#include <QtSvg/QSvgRenderer>
-#include <QPainter>
 #include "facultativ.h"
 #include "userdb.h"
 #include <QMessageBox>
+#include <QImageReader>
 
 namespace Ui {
 class teacherCreateFacultative;

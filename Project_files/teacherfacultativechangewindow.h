@@ -5,6 +5,8 @@
 #include "userdb.h"
 #include "studentsmodel.h"
 #include <QMessageBox>
+#include <QImageReader>
+
 
 namespace Ui {
 class teacherFacultativeChangeWindow;

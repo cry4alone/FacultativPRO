@@ -9,7 +9,10 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
+    QFile file(":/resc/FacultativPRO.qss");
+    file.open(QFile::ReadOnly);
+    QString styleSheet = QLatin1String(file.readAll());
+    a.setStyleSheet(styleSheet);
     UserDb::instance();
 
     WindowNavigator wn;

@@ -1,8 +1,16 @@
 <RCC>
-    <qresource prefix="/">
-        <file>../../../../Downloads/calendar-symbol-svgrepo-com.svg</file>
-    </qresource>
     <qresource prefix="/icon">
         <file alias="Icon">resc/Schedule.png</file>
+        <file>resc/down-arrow.png</file>
+        <file>resc/images.png</file>
+    </qresource>
+    <qresource prefix="/font">
+        <file>resc/RussoOne-Regular.ttf</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>resc/FacultativPRO.qss</file>
+    </qresource>
+    <qresource prefix="/Database">
+        <file>resc/FacultativPRO.sqlite</file>
     </qresource>
 </RCC>
