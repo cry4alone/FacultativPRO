@@ -22,6 +22,8 @@ private slots:
 
     void on_tableViewUsers_doubleClicked(const QModelIndex &index);
 
+    void on_comboBoxRole_currentIndexChanged(int index);
+
 private:
     Ui::checkalluserswindow *ui;
     UsersModel *m_usersModel;

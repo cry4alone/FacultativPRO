@@ -6,6 +6,7 @@ ChangeUserFromAdmin::ChangeUserFromAdmin(int UserID ,QWidget *parent) :
     ui(new Ui::ChangeUserFromAdmin)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Change User");
     m_userID = UserID;
     user = UserDb::instance().getUserByID(m_userID);
 

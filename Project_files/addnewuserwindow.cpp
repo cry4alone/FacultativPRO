@@ -8,7 +8,7 @@ AddNewUserWindow::AddNewUserWindow(QWidget *parent)
     , ui(new Ui::AddNewUserWindow)
 {
     ui->setupUi(this);
-
+    this->setWindowTitle("Add User");
 }
 
 AddNewUserWindow::~AddNewUserWindow()

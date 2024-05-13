@@ -7,6 +7,7 @@ studentfacultativeswindow::studentfacultativeswindow(QWidget *parent, User user)
 {
     m_user = user;
     ui->setupUi(this);
+    this->setWindowTitle("Facultatives");
     fac_mod = new FacultativesModel(nullptr, 0, m_user.ID);
     ui->tableView->setModel(fac_mod);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);

@@ -8,7 +8,10 @@ checkalluserswindow::checkalluserswindow(QWidget *parent) :
     ui(new Ui::checkalluserswindow)
 {
     ui->setupUi(this);
-    ui->tableViewUsers->setModel(new UsersModel);
+    this->setWindowTitle("Administration");
+    m_usersModel = new UsersModel;
+    m_usersModel->getOnlyRole(4);
+    ui->tableViewUsers->setModel(m_usersModel);
     ui->tableViewUsers->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableViewUsers->verticalHeader()->hide();
     ui->tableViewUsers->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -61,3 +64,10 @@ void checkalluserswindow::UpdateUser(int UserId)
     ChangeUserFromAdmin wn(UserId);
     wn.exec();
 }
+
+void checkalluserswindow::on_comboBoxRole_currentIndexChanged(int index)
+{
+    m_usersModel->getOnlyRole(index);
+    ui->tableViewUsers->setModel(m_usersModel);
+}
+

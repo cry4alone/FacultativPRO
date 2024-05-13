@@ -6,6 +6,7 @@ teacherCreateFacultative::teacherCreateFacultative(QWidget *parent, int UserID) 
     ui(new Ui::teacherCreateFacultative)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Create Facultative");
     m_UserID = UserID;
 }
 

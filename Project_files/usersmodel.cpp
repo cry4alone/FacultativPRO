@@ -6,7 +6,7 @@
 UsersModel::UsersModel(QObject *parent)
     : QAbstractTableModel{parent}
 {
-    m_users = UserDb::instance().getAllUsers();
+
 }
 
 UsersModel::~UsersModel()
@@ -90,4 +90,16 @@ QVariant UsersModel::headerData(int section, Qt::Orientation orientation, int ro
     }
 
     return QAbstractTableModel::headerData(section, orientation, role);
+}
+
+void UsersModel::getOnlyRole(int role)
+{
+    if (-1 < role && role < 3)
+    {
+        m_users = UserDb::instance().getOnlySpecificRoleUsers(role);
+    }
+    else
+    {
+        m_users = UserDb::instance().getAllUsers();
+    }
 }

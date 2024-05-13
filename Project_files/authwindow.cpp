@@ -16,7 +16,8 @@ AuthWindow::AuthWindow(QWidget *parent)
     , ui(new Ui::AuthWindow)
 {
     ui->setupUi(this);
-
+    this->setWindowTitle("Authentifiction");
+    setWindowIcon(QIcon(":/icon/Icon"));
     // ui->lineEdit->setValidator(
     //     new QRegularExpressionValidator(
     //         QRegularExpression(R"([A-Za-z]{25})"))); // TODO: нижняя граница!

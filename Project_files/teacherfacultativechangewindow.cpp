@@ -7,6 +7,7 @@ teacherFacultativeChangeWindow::teacherFacultativeChangeWindow(QWidget *parent, 
     , m_StudentsModel(nullptr)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Facultative Informations");
     m_FacID = FacID;
     ui->tabWidget->setTabText(0, "Editing");
     ui->tabWidget->setTabText(1, "Grading");

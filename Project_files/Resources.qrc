@@ -2,4 +2,7 @@
     <qresource prefix="/">
         <file>../../../../Downloads/calendar-symbol-svgrepo-com.svg</file>
     </qresource>
+    <qresource prefix="/icon">
+        <file alias="Icon">resc/Schedule.png</file>
+    </qresource>
 </RCC>

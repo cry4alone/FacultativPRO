@@ -30,6 +30,7 @@ public:
     void setFinalGrade(int userId, int finalGrade, int FacID);
     void changeFacultativ(const Facultativ& facultativ);
     int getFinalGrade(int UserID, int FacID);
+    QVector<User> getOnlySpecificRoleUsers(int role);
 private:
     UserDb();
     QSqlDatabase m_database;

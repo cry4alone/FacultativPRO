@@ -461,3 +461,37 @@ void UserDb::deleteUser(int id)
         qWarning() << "Failed to execute query: " << query.lastError().text();
     }
 }
+
+QVector<User> UserDb::getOnlySpecificRoleUsers(int role)
+{
+    QSqlQuery query(m_database);
+    QVector<User> Users;
+    query.prepare("Select * FROM Users WHERE Role = :role;");
+    query.bindValue(":role", role);
+    if (!query.exec())
+    {
+        qWarning() << "Failed to execute query: " << query.lastError().text();
+    }
+    while (query.next())
+    {
+        int id = query.value(0).toInt();
+        QString roleSt = query.value(3).toString();
+        QString login = query.value(1).toString();
+        QString password = query.value(2).toString();
+        QString name = query.value(4).toString();
+        QString surname = query.value(5).toString();
+        QString group = query.value(6).toString();
+        User::Role role;
+        if (roleSt == "2") {
+            role = User::Role::Student;
+        } else if (roleSt == "1") {
+            role = User::Role::Teacher;
+        } else if (roleSt == "0") {
+            role = User::Role::Administrator;
+        }
+        User user = User(id, login, password, role, name, surname, group);
+        Users.append(user);
+    }
+    m_database.close();
+    return Users;
+}

@@ -6,6 +6,7 @@ signForFacultativWindow::signForFacultativWindow(QWidget *parent, int UserID) :
     ui(new Ui::signForFacultativWindow)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Sign");
     m_UserID = UserID;
     ui->tableView->setModel(new FacultativesModel(nullptr, 1, 0));
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);

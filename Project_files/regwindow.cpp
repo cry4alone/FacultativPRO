@@ -9,6 +9,7 @@ RegWindow::RegWindow(QWidget *parent)
     , ui(new Ui::RegWindow)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Registration");
     ui->groupEdit->setValidator(
          new QRegularExpressionValidator(
              QRegularExpression(R"([A-Z]{2}\d{2}-\d{2}[A-Z]{1})")));

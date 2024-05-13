@@ -5,6 +5,7 @@ facultativScheduleWindow::facultativScheduleWindow(QWidget *parent, Facultativ f
     QDialog(parent),
     ui(new Ui::facultativScheduleWindow)
 {
+    this->setWindowTitle("Facultative Information");
     Qt::DayOfWeek DayOfWeek;
     switch (facultativ.Day_of_Week)
     {

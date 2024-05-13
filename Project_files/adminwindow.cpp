@@ -9,6 +9,7 @@ AdminWindow::AdminWindow(QWidget *parent)
     , ui(new Ui::AdminWindow)
 {
     ui->setupUi(this);
+    setWindowIcon(QIcon(":/icon/Icon"));
 }
 
 AdminWindow::~AdminWindow()
