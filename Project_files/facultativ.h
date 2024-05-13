@@ -26,8 +26,8 @@ public:
     QString Teacher_Surname;
     int Day_of_Week;
     QDate Start_Date;
-    QDate End_Date;
     Type_of_Lesson Type_of_lesson;
+    QDate End_Date;
 };
 
 #endif // FACULTATIV_H

@@ -69,7 +69,55 @@ void teacherFacultativeChangeWindow::on_confirmButton_clicked()
     // Очищаем список измененных строк и временные значения FinalGrade
     m_StudentsModel->clearChangedRows();
     m_StudentsModel->m_tempFinalGrades.clear();
-    //TODO: запись изменных данных с первого виджета
+    if(getAllTheData())
+    {
+        return;
+    }
     close();
 }
 
+bool teacherFacultativeChangeWindow::getAllTheData()
+{
+    QString Discipline_name = ui->nameEdit->text();
+    QDate start_date = ui->startDateEdit->date();
+    QDate end_date = ui->endDateEdit->date();
+    if(checkDate(start_date, end_date))
+    {
+        return true;
+    }
+    int day_of_week = ui->dayBox->currentIndex();
+    int type_of_lesson = ui->laboratoryBox->currentIndex();
+    QString type_of_lesson_string  = QString::number(type_of_lesson);
+    Facultativ::Type_of_Lesson Type_of_lesson;
+    if (type_of_lesson_string == "0")
+    {
+        Type_of_lesson = Facultativ::Type_of_Lesson::Lection;
+    }
+    else if (type_of_lesson_string == "1")
+    {
+        Type_of_lesson = Facultativ::Type_of_Lesson::Laboratory_work;
+    }
+    else
+    {
+        Type_of_lesson = Facultativ::Type_of_Lesson::Practice_work;
+    }
+    Facultativ facultative(Discipline_name, start_date, end_date, day_of_week, Type_of_lesson);
+    facultative.ID = m_FacID;
+    UserDb::instance().changeFacultativ(facultative);
+}
+
+bool teacherFacultativeChangeWindow::checkDate(QDate start, QDate finish)
+{
+    QDate currDate = QDate::currentDate();
+    if ((start < currDate || finish < currDate) || (start == finish))
+    {
+        QMessageBox::warning(this, "Warning", "Check your dates!");
+        return true;
+    }
+    else if (start > finish)
+    {
+        QMessageBox::warning(this, "Warning", "Start date is bigger than end date!");
+        return true;
+    }
+    return false;
+}

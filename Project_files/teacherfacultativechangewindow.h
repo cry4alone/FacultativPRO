@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "userdb.h"
 #include "studentsmodel.h"
+#include <QMessageBox>
 
 namespace Ui {
 class teacherFacultativeChangeWindow;
@@ -27,6 +28,8 @@ private:
     int m_FacID;
     void setEditingWidget();
     void setGradingWidget();
+    bool getAllTheData();
+    bool checkDate(QDate start, QDate finish);
     StudentsModel *m_StudentsModel;
     Ui::teacherFacultativeChangeWindow *ui;
 };

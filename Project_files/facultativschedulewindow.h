@@ -27,6 +27,7 @@ private:
     Facultativ m_facultativ;
     int m_UserID;
     void highlightweeklydates(Qt::DayOfWeek DayOfWeek, QDate Start_Date, QDate End_Date);
+    void setAllData(Qt::DayOfWeek DayOfWeek);
 };
 
 #endif // FACULTATIVSCHEDULEWINDOW_H

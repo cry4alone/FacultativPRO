@@ -35,6 +35,7 @@ int UserDb::getNextId() {
         m_database.close();
         return m_nextId + 1;
     }
+    return 1;
 }
 
 QVector<User> UserDb::getAllUsers()
@@ -172,9 +173,8 @@ bool UserDb::addFacultativ(const Facultativ& facultativ)
         qWarning() << "Failed to execute query: " << query.lastError().text();
         return false;
     }
-    return true;
     m_database.close();
-
+    return true;
 }
 
 bool UserDb::changeUser(const User& user)
@@ -243,17 +243,18 @@ QVector<Facultativ> UserDb::getUserFacultatives(int UserID)
         QDate End_Date = query.value(7).toDate();
         QString Type_of_lesson_String = query.value(8).toString();
         Facultativ::Type_of_Lesson Type_of_lesson;
-        if (Type_of_lesson_String == "0")
+        if (Type_of_lesson_String == "2")
         {
             Type_of_lesson = Facultativ::Type_of_Lesson::Lection;
         }
         else if (Type_of_lesson_String == "1")
         {
-            Type_of_lesson = Facultativ::Type_of_Lesson::Laboratory_work;
+
+            Type_of_lesson = Facultativ::Type_of_Lesson::Practice_work;
         }
         else
         {
-            Type_of_lesson = Facultativ::Type_of_Lesson::Practice_work;
+            Type_of_lesson = Facultativ::Type_of_Lesson::Laboratory_work;
         }
         facultativ = Facultativ(ID, ID_Teacher, Discipline_Name, teacher_surname, teacher_name, Day_of_Week, Start_Date, End_Date, Type_of_lesson);
         facultatives.append(facultativ);
@@ -317,7 +318,7 @@ Facultativ UserDb::getFacultativByID(int FacID)
         m_database.close();
         return Facultativ(ID, ID_Teacher, Discipline_Name, teacher_surname, teacher_name, Day_of_Week, Start_Date, End_Date, Type_of_lesson);
     }
-
+    return Facultativ();
 }
 
 void UserDb::deleteStudentFromFacultative(int UserID, int FacultativID)
@@ -418,6 +419,40 @@ void UserDb::setFinalGrade(int userId, int finalGrade, int FacID)
     {
         qWarning() << "Failed to execute query: " << query.lastError().text();
     }
+}
+
+void UserDb::changeFacultativ(const Facultativ& facultativ)
+{
+    QSqlQuery query(m_database);
+    query.prepare("UPDATE Facultatives SET Discipline_Name = :Name, Day_of_Week = :day_of_week, Type_of_Lesson = :type_of_les, Start_Date = :start_date, End_Date = :end_date "
+                  " WHERE ID = :FacID;");
+    query.bindValue(":Name", facultativ.Discipline_Name);
+    query.bindValue(":day_of_week", facultativ.Day_of_Week);
+    query.bindValue(":type_of_les", facultativ.Type_of_lesson);
+    query.bindValue(":start_date", facultativ.Start_Date);
+    query.bindValue(":end_date", facultativ.End_Date);
+    query.bindValue(":FacID", facultativ.ID);
+    if (!query.exec())
+    {
+        qWarning() << "Failed to execute query: " << query.lastError().text();
+    }
+}
+
+int UserDb::getFinalGrade(int UserID, int FacID)
+{
+    QSqlQuery query(m_database);
+    query.prepare("SELECT Final_Grade FROM Study WHERE ID_Facultative = :FacID AND ID_Student = :UserID;");
+    query.bindValue(":FacID", FacID);
+    query.bindValue(":UserID", UserID);
+    if (!query.exec())
+    {
+        qWarning() << "Failed to execute query: " << query.lastError().text();
+    }
+    if (query.next())
+    {
+        return query.value(0).toInt();
+    }
+    return -1;
 }
 
 void deleteUser(int id)

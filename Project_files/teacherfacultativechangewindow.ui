@@ -158,17 +158,17 @@
           <widget class="QComboBox" name="laboratoryBox">
            <item>
             <property name="text">
+             <string>Lection</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>Laboratory work</string>
             </property>
            </item>
            <item>
             <property name="text">
              <string>Practice</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Lection</string>
             </property>
            </item>
           </widget>

@@ -1,6 +1,5 @@
 #ifndef ADMINUSER_H
 #define ADMINUSER_H
-#include "user.h";
 
 class AdminUser : public User
 {

@@ -29,6 +29,8 @@ public:
     QVector<Facultativ> getTeacherFacultativ(int UserID);
     QVector<User> getTeacherUsers(int FacID);
     void setFinalGrade(int userId, int finalGrade, int FacID);
+    void changeFacultativ(const Facultativ& facultativ);
+    int getFinalGrade(int UserID, int FacID);
 private:
     UserDb();
     QSqlDatabase m_database;
