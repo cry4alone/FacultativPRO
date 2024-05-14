@@ -1,3 +1,5 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 #include "addnewuserwindow.h"
 #include "ui_addnewuserwindow.h"
 
@@ -73,7 +75,7 @@ void AddNewUserWindow::on_pushBtnOk_clicked()
         currUser = new User(login, pass, role, NULL, NULL, NULL);
     }
     db.addUser(*currUser);
-    QMessageBox::information(this,"Notification","Your account was successfully created!");
+    QMessageBox::information(this,"Notification","New user was successfully created!");
     delete currUser;
     close();
 }

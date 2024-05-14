@@ -1,25 +1,24 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 #include "facultativesmodel.h"
 
-FacultativesModel::FacultativesModel(QObject *parent, bool mode, int UserID)
+FacultativesModel::FacultativesModel(QObject *parent, int UserID)
     : QAbstractTableModel{parent}
 {
-    if (mode) //0 - personal4sudent 1 - allfacultatives
-    {
-        setAllFacultatives();
-    }
-    else
-    {
-        setIdFacultatives(UserID);
-    }
+
 }
 
 void FacultativesModel::setIdFacultatives(int UserID)
 {
+    beginInsertRows(QModelIndex(), size(), size());
     m_facultatives = UserDb::instance().getUserFacultatives(UserID);
+    endInsertRows();
 }
 void FacultativesModel::setTeacherFacultatives(int UserID)
 {
+    beginInsertRows(QModelIndex(), size(), size());
     m_facultatives = UserDb::instance().getTeacherFacultativ(UserID);
+    endInsertRows();
 }
 
 void FacultativesModel::setAllFacultatives()

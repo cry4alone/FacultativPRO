@@ -1,3 +1,5 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 #include <QTextStream>
 #include <QDebug>
 #include "userdb.h"
@@ -335,8 +337,13 @@ QVector<Facultativ> UserDb::getTeacherFacultativ(int UserID)
     QVector<Facultativ> facultatives;
     Facultativ facultativ;
     QSqlQuery query(m_database);
-    query.prepare("SELECT Facultatives.ID, Facultatives.ID_Teacher, "
-                  " Facultatives.Discipline_Name, Users.Surname, Users.Name, Facultatives.Day_of_Week, Facultatives.Start_Date, Facultatives.End_Date, Facultatives.Type_of_Lesson FROM Facultatives INNER JOIN Users ON Facultatives.ID_Teacher = Users.ID INNER JOIN Study ON Facultatives.ID = Study.ID_Facultative WHERE Facultatives.ID_Teacher = :teacher_id;");
+    qDebug()<< UserID;
+    query.prepare("SELECT DISTINCT Facultatives.ID, Facultatives.ID_Teacher, "
+                  " Facultatives.Discipline_Name, Users.Surname, Users.Name, Facultatives.Day_of_Week, Facultatives.Start_Date, Facultatives.End_Date, Facultatives.Type_of_Lesson "
+                  "  FROM Facultatives "
+                  "  INNER JOIN Users ON Facultatives.ID_Teacher = Users.ID "
+                  "  LEFT JOIN Study ON Facultatives.ID = Study.ID_Facultative "
+                  "  WHERE Facultatives.ID_Teacher = :teacher_id; ");
     query.bindValue(":teacher_id", UserID);
     if (!query.exec())
     {

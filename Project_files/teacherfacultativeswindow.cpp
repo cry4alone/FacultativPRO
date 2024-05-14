@@ -1,3 +1,5 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 #include "teacherfacultativeswindow.h"
 #include "ui_teacherfacultativeswindow.h"
 
@@ -8,7 +10,7 @@ teacherFacultativesWindow::teacherFacultativesWindow(QWidget *parent, int UserID
     ui->setupUi(this);
     this->setWindowTitle("Facultatives");
     setWindowIcon(QIcon(":/icon/Icon"));
-    FacMod = new FacultativesModel(nullptr, 3, UserID);
+    FacMod = new FacultativesModel(nullptr, UserID);
     FacMod->setTeacherFacultatives(UserID);
     ui->tableView->setModel(FacMod);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);

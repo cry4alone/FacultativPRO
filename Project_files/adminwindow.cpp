@@ -1,3 +1,5 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 #include "adminwindow.h"
 #include "ui_adminwindow.h"
 
@@ -9,6 +11,7 @@ AdminWindow::AdminWindow(QWidget *parent)
     , ui(new Ui::AdminWindow)
 {
     ui->setupUi(this);
+    this->showMaximized();
     setWindowIcon(QIcon(":/icon/Icon"));
 }
 

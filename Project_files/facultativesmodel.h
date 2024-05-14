@@ -8,7 +8,7 @@
 class FacultativesModel : public QAbstractTableModel
 {
 public:
-    explicit FacultativesModel(QObject *parent = nullptr, bool mode = 0, int UserID = 0);
+    explicit FacultativesModel(QObject *parent = nullptr, int UserID = 0);
     ~FacultativesModel();
 private:
     QVector<Facultativ> m_facultatives;

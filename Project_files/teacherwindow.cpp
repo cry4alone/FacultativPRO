@@ -1,3 +1,5 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 #include "teacherwindow.h"
 #include "ui_teacherwindow.h"
 #include "teachercreatefacultative.h"
@@ -7,6 +9,7 @@ TeacherWindow::TeacherWindow(QWidget *parent, int UserID)
     , ui(new Ui::TeacherWindow)
 {
     ui->setupUi(this);
+    this->showMaximized();
     setWindowIcon(QIcon(":/icon/Icon"));
     m_UserID = UserID;
     connect(ui->actionChangeUser, &QAction::triggered,

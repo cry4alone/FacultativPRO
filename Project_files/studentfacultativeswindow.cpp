@@ -1,3 +1,5 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 #include "studentfacultativeswindow.h"
 #include "ui_studentfacultativeswindow.h"
 
@@ -9,7 +11,8 @@ studentfacultativeswindow::studentfacultativeswindow(QWidget *parent, User user)
     ui->setupUi(this);
     this->setWindowTitle("Facultatives");
     setWindowIcon(QIcon(":/icon/Icon"));
-    fac_mod = new FacultativesModel(nullptr, 0, m_user.ID);
+    fac_mod = new FacultativesModel(nullptr, m_user.ID);
+    fac_mod->setIdFacultatives(m_user.ID);
     ui->tableView->setModel(fac_mod);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableView->verticalHeader()->hide();
@@ -31,7 +34,7 @@ void studentfacultativeswindow::on_signFacultativButton_clicked()
     signForFacultativWindow sffw(nullptr, m_user.ID);
     sffw.exec();
 
-    fac_mod = new FacultativesModel(nullptr, 0, m_user.ID);
+    fac_mod->setIdFacultatives(m_user.ID);
     ui->tableView->setModel(fac_mod);
 }
 
@@ -41,7 +44,7 @@ void studentfacultativeswindow::on_tableView_doubleClicked(const QModelIndex &in
     int FacID = ui->tableView->model()->data(mi, Qt::UserRole).toInt();
     Facultativ m_Fac = UserDb::instance().getFacultativByID(FacID);
     facultativScheduleWindow fsw(nullptr, m_Fac, m_user.ID);
-    fac_mod = new FacultativesModel(nullptr, 0, m_user.ID);
+    fac_mod->setIdFacultatives(m_user.ID);
     ui->tableView->setModel(fac_mod);
     fsw.exec();
 }

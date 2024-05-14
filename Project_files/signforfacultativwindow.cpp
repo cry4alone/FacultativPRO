@@ -1,3 +1,5 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 #include "signforfacultativwindow.h"
 #include "ui_signforfacultativwindow.h"
 
@@ -9,7 +11,9 @@ signForFacultativWindow::signForFacultativWindow(QWidget *parent, int UserID) :
     this->setWindowTitle("Sign");
     setWindowIcon(QIcon(":/icon/Icon"));
     m_UserID = UserID;
-    ui->tableView->setModel(new FacultativesModel(nullptr, 1, 0));
+    FacMod = new FacultativesModel(nullptr, 0);
+    FacMod->setAllFacultatives();
+    ui->tableView->setModel(FacMod);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableView->verticalHeader()->hide();
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);

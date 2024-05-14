@@ -1,3 +1,5 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 #include "teachercreatefacultative.h"
 #include "ui_teachercreatefacultative.h"
 
@@ -28,23 +30,22 @@ void teacherCreateFacultative::on_backButton_clicked()
 
 void teacherCreateFacultative::on_createButton_clicked()
 {
+    QString Discipline_name = ui->nameEdit->text();
+    if (Discipline_name.trimmed() == "")
+    {
+        QMessageBox::warning(this, "Warning", "Discipline Name can't be empty!");
+        return;
+    }
+    QDate start_date = ui->startDateEdit->date();
+    QDate end_date = ui->endDateEdit->date();
+    if(checkDate(start_date, end_date))
+    {
+        return;
+    }
     QMessageBox::StandardButton result = QMessageBox::question(this,"Confirmation", "Are you sure you want to add facultative?", QMessageBox::Yes|QMessageBox::No);
     //TODO : обработать нажатия кнопок
     if (result == QMessageBox::Yes)
     {
-        QString Discipline_name = ui->nameEdit->text();
-        if (Discipline_name.trimmed() == "")
-        {
-            QMessageBox::warning(this, "Warning", "Discipline Name can't be empty!");
-            return;
-        }
-        QDate start_date = ui->startDateEdit->date();
-        QDate end_date = ui->endDateEdit->date();
-        if(checkDate(start_date, end_date))
-        {
-            QMessageBox::warning(this, "Warning", "Discipline Name can't be empty!");
-            return;
-        }
         int day_of_week = ui->dayBox->currentIndex();
         int type_of_lesson = ui->laboratoryBox->currentIndex();
         QString type_of_lesson_string  = QString::number(type_of_lesson);

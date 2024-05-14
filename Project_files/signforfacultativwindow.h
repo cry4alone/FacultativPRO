@@ -24,6 +24,7 @@ private slots:
 
 private:
     int m_UserID;
+    FacultativesModel *FacMod;
     Ui::signForFacultativWindow *ui;
 };
 
