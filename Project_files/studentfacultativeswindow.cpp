@@ -11,6 +11,7 @@ studentfacultativeswindow::studentfacultativeswindow(QWidget *parent, User user)
     ui->setupUi(this);
     this->setWindowTitle("Facultatives");
     setWindowIcon(QIcon(":/icon/Icon"));
+    showMaximized();
     fac_mod = new FacultativesModel(nullptr, m_user.ID);
     fac_mod->setIdFacultatives(m_user.ID);
     ui->tableView->setModel(fac_mod);

@@ -33,6 +33,7 @@ public:
     void changeFacultativ(const Facultativ& facultativ);
     int getFinalGrade(int UserID, int FacID);
     QVector<User> getOnlySpecificRoleUsers(int role);
+    void deleteFacultative(int FacID);
 private:
     UserDb();
     QSqlDatabase m_database;

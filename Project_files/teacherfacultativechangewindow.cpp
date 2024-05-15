@@ -16,8 +16,8 @@ teacherFacultativeChangeWindow::teacherFacultativeChangeWindow(QWidget *parent, 
     QPixmap pixmap = QPixmap::fromImage(image); // преобразовать изображение в pixmap
     ui->pixmap->setPixmap(pixmap);
     m_FacID = FacID;
-    ui->tabWidget->setTabText(0, "Editing");
-    ui->tabWidget->setTabText(1, "Grading");
+    ui->tabWidget->setTabText(1, "Editing");
+    ui->tabWidget->setTabText(0, "Grading");
     m_facultativ = UserDb::instance().getFacultativByID(FacID);
     setEditingWidget();
     setGradingWidget();
@@ -138,3 +138,14 @@ bool teacherFacultativeChangeWindow::checkDate(QDate start, QDate finish)
     }
     return false;
 }
+
+void teacherFacultativeChangeWindow::on_deleteButton_clicked()
+{
+    QMessageBox::StandardButton result = QMessageBox::question(this,"Warning", "This action will delete the facultative and all associated dependencies. Are you sure you want to proceed?", QMessageBox::Yes|QMessageBox::No);
+    if (result == QMessageBox::Yes)
+    {
+        UserDb::instance().deleteFacultative(m_FacID);
+        close();
+    }
+}
+

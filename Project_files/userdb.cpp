@@ -502,3 +502,14 @@ QVector<User> UserDb::getOnlySpecificRoleUsers(int role)
     m_database.close();
     return Users;
 }
+
+void UserDb::deleteFacultative(int FacID)
+{
+    QSqlQuery query(m_database);
+    query.prepare("DELETE FROM Facultatives WHERE ID = :FacID;");
+    query.bindValue(":FacID", FacID);
+    if (!query.exec())
+    {
+        qWarning() << "Failed to execute query: " << query.lastError().text();
+    }
+}

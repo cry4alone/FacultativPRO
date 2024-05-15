@@ -9,6 +9,7 @@ ChangeUserFromAdmin::ChangeUserFromAdmin(int UserID ,QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle("Change User");
+    this->showMaximized();
     setWindowIcon(QIcon(":/icon/Icon"));
     m_userID = UserID;
     user = UserDb::instance().getUserByID(m_userID);

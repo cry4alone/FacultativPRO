@@ -9,6 +9,7 @@ teacherFacultativesWindow::teacherFacultativesWindow(QWidget *parent, int UserID
 {
     ui->setupUi(this);
     this->setWindowTitle("Facultatives");
+    showMaximized();
     setWindowIcon(QIcon(":/icon/Icon"));
     FacMod = new FacultativesModel(nullptr, UserID);
     FacMod->setTeacherFacultatives(UserID);

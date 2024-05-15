@@ -9,6 +9,7 @@ facultativScheduleWindow::facultativScheduleWindow(QWidget *parent, Facultativ f
 {
     this->setWindowTitle("Facultative Information");
     setWindowIcon(QIcon(":/icon/Icon"));
+    showMaximized();
     Qt::DayOfWeek DayOfWeek;
     switch (facultativ.Day_of_Week)
     {

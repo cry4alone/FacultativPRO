@@ -10,10 +10,6 @@ teacherCreateFacultative::teacherCreateFacultative(QWidget *parent, int UserID) 
     ui->setupUi(this);
     this->setWindowTitle("Create Facultative");
     setWindowIcon(QIcon(":/icon/Icon"));
-    QImageReader reader(":/icon/resc/images.png"); // установить путь к изображению в ресурсах
-    QImage image = reader.read(); // прочитать изображение
-    QPixmap pixmap = QPixmap::fromImage(image); // преобразовать изображение в pixmap
-    ui->picture->setPixmap(pixmap);
     m_UserID = UserID;
 }
 

@@ -25,6 +25,8 @@ private slots:
 
     void on_confirmButton_clicked();
 
+    void on_deleteButton_clicked();
+
 private:
     Facultativ m_facultativ;
     int m_FacID;

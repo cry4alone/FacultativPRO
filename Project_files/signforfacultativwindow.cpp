@@ -10,6 +10,7 @@ signForFacultativWindow::signForFacultativWindow(QWidget *parent, int UserID) :
     ui->setupUi(this);
     this->setWindowTitle("Sign");
     setWindowIcon(QIcon(":/icon/Icon"));
+    showMaximized();
     m_UserID = UserID;
     FacMod = new FacultativesModel(nullptr, 0);
     FacMod->setAllFacultatives();

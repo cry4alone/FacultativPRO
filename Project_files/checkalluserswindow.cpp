@@ -12,6 +12,7 @@ checkalluserswindow::checkalluserswindow(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowTitle("Administration");
     setWindowIcon(QIcon(":/icon/Icon"));
+    showMaximized();
     m_usersModel = new UsersModel;
     m_usersModel->getOnlyRole(4);
     ui->tableViewUsers->setModel(m_usersModel);
@@ -43,7 +44,7 @@ void checkalluserswindow::on_tableViewUsers_doubleClicked(const QModelIndex &ind
     {
         UpdateUser(userId);
     }
-    ui->tableViewUsers->setModel(new UsersModel);
+    ui->tableViewUsers->setModel(m_usersModel);
 }
 
 void checkalluserswindow::DeleteUser(int UserId)
@@ -68,9 +69,17 @@ void checkalluserswindow::UpdateUser(int UserId)
     wn.exec();
 }
 
+
+void checkalluserswindow::on_comboBoxRole_activated(int index)
+{
+
+}
+
+
 void checkalluserswindow::on_comboBoxRole_currentIndexChanged(int index)
 {
     m_usersModel->getOnlyRole(index);
+    m_usersModel->layoutChanged();
     ui->tableViewUsers->setModel(m_usersModel);
 }
 
