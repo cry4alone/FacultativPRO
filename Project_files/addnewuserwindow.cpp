@@ -10,6 +10,7 @@ AddNewUserWindow::AddNewUserWindow(QWidget *parent)
     , ui(new Ui::AddNewUserWindow)
 {
     ui->setupUi(this);
+    setWindowIcon(QIcon(":/icon/Icon"));
     this->showMaximized();
     this->setWindowTitle("Add User");
 }

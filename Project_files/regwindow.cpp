@@ -39,12 +39,12 @@ void RegWindow::on_OkButton_clicked()
     const auto group = ui->groupEdit->text();
     if(pass.isEmpty() == true)
     {
-        QMessageBox::warning(this,"Ошибка","Password can't be empty!");
+        QMessageBox::warning(this,"Error","Password can't be empty!");
         return;
     }
     if (pass != rppass)
     {
-        QMessageBox::warning(this,"Ошибка","Passwords aren't the same!");
+        QMessageBox::warning(this,"Error","Passwords aren't the same!");
         return;
     }
     if (name.toInt())

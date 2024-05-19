@@ -71,7 +71,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Все факультатвы</string>
+          <string>All Facultatives</string>
          </property>
         </widget>
        </item>

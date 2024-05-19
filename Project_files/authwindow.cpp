@@ -43,7 +43,7 @@ void AuthWindow::on_LoginButton_clicked()
         password.isEmpty())
     {
         QMessageBox::warning(
-            this, "Ошибка", "Логин и пароль не могут быть пустыми");
+            this, "Warning", "Login and password can't be empty");
         return;
     }
 
@@ -62,7 +62,7 @@ void AuthWindow::on_LoginButton_clicked()
     }
     else if (result.first == "None") {
         QMessageBox::warning(
-            this, "Ошибка", "Неправильный логин или пароль!");
+            this, "Warning", "Wrong password or login!");
     }
 
 }

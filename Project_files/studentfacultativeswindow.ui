@@ -54,7 +54,7 @@
        <item>
         <widget class="QPushButton" name="signFacultativButton">
          <property name="text">
-          <string>Записаться на факультатив</string>
+          <string>Sign for facultative</string>
          </property>
         </widget>
        </item>

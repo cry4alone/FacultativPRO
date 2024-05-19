@@ -8,6 +8,8 @@ ChangeUserFromAdmin::ChangeUserFromAdmin(int UserID ,QWidget *parent) :
     ui(new Ui::ChangeUserFromAdmin)
 {
     ui->setupUi(this);
+    ui->lineEditgroup->setValidator(new QRegularExpressionValidator(
+        QRegularExpression(R"([A-Z]{2}\d{2}-\d{2}[A-Z]{1})")));
     this->setWindowTitle("Change User");
     this->showMaximized();
     setWindowIcon(QIcon(":/icon/Icon"));

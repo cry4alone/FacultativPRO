@@ -10,6 +10,7 @@ teacherCreateFacultative::teacherCreateFacultative(QWidget *parent, int UserID) 
     ui->setupUi(this);
     this->setWindowTitle("Create Facultative");
     setWindowIcon(QIcon(":/icon/Icon"));
+    showMaximized();
     m_UserID = UserID;
 }
 

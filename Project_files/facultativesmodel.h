@@ -24,6 +24,7 @@ public:
     void setAllFacultatives();
     void setIdFacultatives(int UserID);
     void setTeacherFacultatives(int UserID);
+    void deleteFacultatives(int index, int FacID);
 };
 
 #endif // FACULTATIVESMODEL_H

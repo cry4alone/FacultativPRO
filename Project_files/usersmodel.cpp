@@ -13,6 +13,7 @@ UsersModel::UsersModel(QObject *parent)
 
 UsersModel::~UsersModel()
 {
+
 }
 
 
@@ -45,7 +46,8 @@ QVariant UsersModel::data(const QModelIndex &index, int role) const
             return m_users[index.row()].Login;
         }
         else if (index.column() == 2) {
-            return m_users[index.row()].Password;
+            //return m_users[index.row()].Password;
+            return "*****";
         }
         else if (index.column() == 3) {
             return m_users[index.row()].role;
@@ -105,3 +107,4 @@ void UsersModel::getOnlyRole(int role)
         m_users = UserDb::instance().getAllUsers();
     }
 }
+

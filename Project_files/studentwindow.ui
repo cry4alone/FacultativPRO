@@ -15,13 +15,6 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QPushButton" name="changeUserButton">
-      <property name="text">
-       <string>Change user</string>
-      </property>
-     </widget>
-    </item>
     <item row="1" column="2">
      <spacer name="verticalSpacer">
       <property name="orientation">
@@ -39,8 +32,16 @@
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QLabel" name="aboutStudent">
+        <property name="font">
+         <font>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
         <property name="text">
-         <string/>
+         <string>Student </string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
@@ -98,6 +99,13 @@
        </size>
       </property>
      </spacer>
+    </item>
+    <item row="0" column="0">
+     <widget class="QPushButton" name="changeUserButton">
+      <property name="text">
+       <string>Change user</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

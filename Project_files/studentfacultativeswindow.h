@@ -27,6 +27,8 @@ private slots:
 
     void on_tableView_doubleClicked(const QModelIndex &index);
 
+    void deleteRowFromTable(int index, int FacID);
+
 private:
     Ui::studentfacultativeswindow *ui;
     User m_user;

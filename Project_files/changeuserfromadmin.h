@@ -5,6 +5,9 @@
 #include "userdb.h"
 #include <QString>
 #include <QMessageBox>
+#include <QRegularExpressionValidator>
+#include <QRegularExpression>
+
 namespace Ui {
 class ChangeUserFromAdmin;
 }

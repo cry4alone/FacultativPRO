@@ -11,10 +11,6 @@ teacherFacultativeChangeWindow::teacherFacultativeChangeWindow(QWidget *parent, 
     ui->setupUi(this);
     this->setWindowTitle("Facultative Informations");
     setWindowIcon(QIcon(":/icon/Icon"));
-    QImageReader reader(":/icon/resc/images.png"); // установить путь к изображению в ресурсах
-    QImage image = reader.read(); // прочитать изображение
-    QPixmap pixmap = QPixmap::fromImage(image); // преобразовать изображение в pixmap
-    ui->pixmap->setPixmap(pixmap);
     m_FacID = FacID;
     ui->tabWidget->setTabText(1, "Editing");
     ui->tabWidget->setTabText(0, "Grading");
@@ -145,6 +141,7 @@ void teacherFacultativeChangeWindow::on_deleteButton_clicked()
     if (result == QMessageBox::Yes)
     {
         UserDb::instance().deleteFacultative(m_FacID);
+        ui->tableView->setModel(m_StudentsModel);
         close();
     }
 }

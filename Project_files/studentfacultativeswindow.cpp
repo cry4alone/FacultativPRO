@@ -7,6 +7,7 @@ studentfacultativeswindow::studentfacultativeswindow(QWidget *parent, User user)
     QDialog(parent),
     ui(new Ui::studentfacultativeswindow)
 {
+    //connect()
     m_user = user;
     ui->setupUi(this);
     this->setWindowTitle("Facultatives");
@@ -45,8 +46,14 @@ void studentfacultativeswindow::on_tableView_doubleClicked(const QModelIndex &in
     int FacID = ui->tableView->model()->data(mi, Qt::UserRole).toInt();
     Facultativ m_Fac = UserDb::instance().getFacultativByID(FacID);
     facultativScheduleWindow fsw(nullptr, m_Fac, m_user.ID);
-    fac_mod->setIdFacultatives(m_user.ID);
-    ui->tableView->setModel(fac_mod);
+    fsw.m_index = index.row();
+    connect(&fsw, SIGNAL(deleteStudentFromFacultative(int,int)), this, SLOT(deleteRowFromTable(int,int)));
+    // fac_mod->setIdFacultatives(m_user.ID);
+    // ui->tableView->setModel(fac_mod);
     fsw.exec();
 }
 
+void studentfacultativeswindow::deleteRowFromTable(int index, int FacID)
+{
+    fac_mod->deleteFacultatives(index, FacID);
+}

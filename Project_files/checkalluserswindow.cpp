@@ -44,6 +44,7 @@ void checkalluserswindow::on_tableViewUsers_doubleClicked(const QModelIndex &ind
     {
         UpdateUser(userId);
     }
+    m_usersModel->getOnlyRole(4);
     ui->tableViewUsers->setModel(m_usersModel);
 }
 

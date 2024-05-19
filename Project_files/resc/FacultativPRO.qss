@@ -19,6 +19,11 @@ QLineEdit {
     padding: 5px;
     selection-background-color: #5d71F1;
     selection-color: #fff;
+
+}
+
+QLineEdit::placeholder {
+    color: blue;
 }
 
 QLineEdit:focus {

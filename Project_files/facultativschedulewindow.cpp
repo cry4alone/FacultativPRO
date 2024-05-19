@@ -7,9 +7,11 @@ facultativScheduleWindow::facultativScheduleWindow(QWidget *parent, Facultativ f
     QDialog(parent),
     ui(new Ui::facultativScheduleWindow)
 {
+    ui->setupUi(this);
     this->setWindowTitle("Facultative Information");
     setWindowIcon(QIcon(":/icon/Icon"));
-    showMaximized();
+    show();
+    moveCentre();
     Qt::DayOfWeek DayOfWeek;
     switch (facultativ.Day_of_Week)
     {
@@ -36,11 +38,19 @@ facultativScheduleWindow::facultativScheduleWindow(QWidget *parent, Facultativ f
             break;
     }
 
-    ui->setupUi(this);
+
     m_facultativ = facultativ;
     m_UserID = UserID;
 
     setAllData(DayOfWeek);
+}
+
+void facultativScheduleWindow::moveCentre()
+{
+    QRect screenGeometry = QApplication::primaryScreen()->availableGeometry();
+    int x = (screenGeometry.width() - this->width()) / 2;
+    int y = (screenGeometry.height() - this->height()) / 2;
+    this->move(x, y);
 }
 
 void facultativScheduleWindow::setAllData(Qt::DayOfWeek DayOfWeek)
@@ -96,6 +106,7 @@ void facultativScheduleWindow::highlightweeklydates(Qt::DayOfWeek DayOfWeek, QDa
 
 void facultativScheduleWindow::on_unsignButton_clicked()
 {
+    emit deleteStudentFromFacultative(m_index, m_facultativ.ID);
     UserDb::instance().deleteStudentFromFacultative(m_UserID, m_facultativ.ID);
     close();
 }

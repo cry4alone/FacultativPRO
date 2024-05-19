@@ -107,3 +107,12 @@ QVariant FacultativesModel::headerData(int section, Qt::Orientation orientation,
 
     return QAbstractTableModel::headerData(section, orientation, role);
 }
+
+void FacultativesModel::deleteFacultatives(int index, int FacID)
+{
+    //UserDb::instance().deleteStudentFromFacultative(m_facultatives[index].ID, FacID);
+
+    beginRemoveRows(QModelIndex(), index, index);
+    m_facultatives.removeAt(index);
+    endRemoveRows();
+}

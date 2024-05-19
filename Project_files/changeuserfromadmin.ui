@@ -17,7 +17,7 @@
    <item row="0" column="0" colspan="3">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="Main">
       <attribute name="title">
@@ -104,7 +104,7 @@
          <item>
           <widget class="QLineEdit" name="lineEditpass">
            <property name="echoMode">
-            <enum>QLineEdit::PasswordEchoOnEdit</enum>
+            <enum>QLineEdit::NoEcho</enum>
            </property>
            <property name="placeholderText">
             <string>Password</string>

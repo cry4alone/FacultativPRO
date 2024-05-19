@@ -26,6 +26,7 @@ private:
     int m_UserID;
     FacultativesModel *FacMod;
     Ui::signForFacultativWindow *ui;
+    bool checkExistsFacultatives(int FacID);
 };
 
 #endif // SIGNFORFACULTATIVWINDOW_H

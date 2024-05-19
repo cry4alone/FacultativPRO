@@ -10,7 +10,6 @@ signForFacultativWindow::signForFacultativWindow(QWidget *parent, int UserID) :
     ui->setupUi(this);
     this->setWindowTitle("Sign");
     setWindowIcon(QIcon(":/icon/Icon"));
-    showMaximized();
     m_UserID = UserID;
     FacMod = new FacultativesModel(nullptr, 0);
     FacMod->setAllFacultatives();
@@ -35,14 +34,35 @@ void signForFacultativWindow::on_tableView_doubleClicked(const QModelIndex &inde
 {
     const auto mi = index.siblingAtColumn(0);
     int facultativeId = ui->tableView->model()->data(mi, Qt::UserRole).toInt();
-    QMessageBox::StandardButton result = QMessageBox::question(this,"Confirmation", "Are you sure you want to sign up for this facultativ?", QMessageBox::Yes|QMessageBox::No);
-    //TODO : обработать нажатия кнопок
-    if (result == QMessageBox::Yes)
+    bool result = checkExistsFacultatives(facultativeId);
+    if (result)
     {
-        qDebug() << facultativeId << m_UserID;
-        UserDb::instance().signForFacultativ(m_UserID, facultativeId);
-        close();
+        QMessageBox::StandardButton result = QMessageBox::question(this,"Confirmation", "Are you sure you want to sign up for this facultativ?", QMessageBox::Yes|QMessageBox::No);
+        if (result == QMessageBox::Yes)
+        {
+            qDebug() << facultativeId << m_UserID;
+            UserDb::instance().signForFacultativ(m_UserID, facultativeId);
+            close();
+        }
     }
+    else
+    {
+        QMessageBox::warning(this,"Warning", "You are already signed for this facultative");
+    }
+}
+
+bool signForFacultativWindow::checkExistsFacultatives(int FacID)
+{
+    QVector<Facultativ> currFacs = UserDb::instance().getUserFacultatives(m_UserID);
+    foreach(Facultativ fac, currFacs)
+    {
+        if(fac.ID == FacID)
+        {
+            return false;
+            break;
+        }
+    }
+    return true;
 }
 
 
